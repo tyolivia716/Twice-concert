@@ -232,103 +232,112 @@
     .page-arrow.left { left: 8px; }
     .page-arrow.right { right: 8px; }
 
-    /* 底部固定導覽列 */
-    .bottom-bar {
-        position: fixed;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: rgba(0,0,0,0.85);
-        color: #fff;
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
-        padding: 8px 10px;
-        z-index: 950;
-        font-size: 13px;
-    }
+   /* 📚 底部固定導覽列：閱讀器 Dock 風格 */
+.bottom-bar {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #ffffffd8;            /* 半透明白底 */
+    backdrop-filter: blur(12px);      /* 毛玻璃效果 */
+    color: #111;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 10px 12px;
+    z-index: 950;
+    font-size: 15px;
+    border-top: 1px solid #eee;
+}
 
-    .bottom-bar button,
-    .bottom-bar a {
-        border: none;
-        border-radius: 999px;
-        padding: 6px 14px;
-        background: var(--twice-main);
-        color: #111;
-        font-weight: 700;
-        text-decoration: none;
-        font-family: 'Noto Sans TC', 'Times New Roman', serif;
-    }
+/* 每顆按鈕像 Dock 裡的大按鈕 */
+.bottom-bar button,
+.bottom-bar a {
+    flex: 1;                           /* 四顆平均分寬度 */
+    margin: 0 6px;
+    border: none;
+    border-radius: 14px;
+    padding: 12px 0;                   /* 比較高、好按 */
+    background: var(--twice-main);
+    color: #111;
+    font-weight: 700;
+    font-size: 16px;                   /* 字變大 */
+    text-align: center;
+    text-decoration: none;
+    font-family: 'Noto Sans TC', 'Times New Roman', serif;
+}
 
-    .bottom-bar button:disabled {
-        opacity: 0.5;
-        cursor: default;
-    }
+/* 不能按的樣式 */
+.bottom-bar button:disabled {
+    opacity: 0.4;
+    cursor: default;
+}
 
-    .bottom-bar a.disabled {
-        opacity: 0.5;
-        pointer-events: none;
-    }
+.bottom-bar a.disabled {
+    opacity: 0.4;
+    pointer-events: none;
+}
 
-    /* 底部目錄面板 */
-    .dir-overlay {
-        position: fixed;
-        inset: 0;
-        background: rgba(0,0,0,0.5);
-        display: none;
-        align-items: flex-end;
-        z-index: 960;
-    }
+/* 底部目錄面板（新版放大） */
+.dir-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.5);
+    display: none;
+    align-items: flex-end;
+    z-index: 960;
+}
 
-    .dir-overlay.open {
-        display: flex;
-    }
+.dir-overlay.open {
+    display: flex;
+}
 
-    .dir-sheet {
-        background: #222;
-        color: #fff;
-        width: 100%;
-        max-height: 75vh;
-        border-radius: 16px 16px 0 0;
-        padding: 10px 14px 14px;
-        overflow-y: auto;
-    }
+.dir-sheet {
+    background: #222;
+    color: #fff;
+    width: 100%;
+    max-height: 82vh;              /* 面板再高一點 */
+    border-radius: 18px 18px 0 0;
+    padding: 16px 20px 20px;       /* 內距加大 */
+    overflow-y: auto;
+}
 
-    .dir-title {
-        text-align: center;
-        margin-bottom: 8px;
-        font-weight: 700;
-        font-size: 16px;
-    }
+.dir-title {
+    text-align: center;
+    margin-bottom: 14px;
+    font-weight: 700;
+    font-size: 18px;               /* 標題字加大 */
+}
 
-    .dir-list {
-        list-style: none;
-        margin: 0;
-        padding: 0;
-    }
+.dir-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
 
-    .dir-list li {
-        margin-bottom: 4px;
-    }
+.dir-list li {
+    margin-bottom: 8px;            /* 行距加大 */
+}
 
-    .dir-list button {
-        width: 100%;
-        text-align: left;
-        border: none;
-        background: transparent;
-        color: #eee;
-        padding: 8px 6px;
-        border-radius: 8px;
-        cursor: pointer;
-        font-size: 14px;
-        font-family: 'Noto Sans TC', 'Times New Roman', serif;
-    }
+.dir-list button {
+    width: 100%;
+    text-align: left;
+    border: none;
+    background: transparent;
+    color: #eee;
+    padding: 10px 10px;            /* 點擊區域變大 */
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 16px;               /* 章節字體變大 */
+    font-family: 'Noto Sans TC', 'Times New Roman', serif;
+}
 
-    .dir-list button.active,
-    .dir-list button:hover {
-        background: var(--twice-main);
-        color: #111;
-    }
+.dir-list button.active,
+.dir-list button:hover {
+    background: var(--twice-main);
+    color: #111;
+}
+
 
     /* RWD：手機 */
     @media (max-width: 768px) {
