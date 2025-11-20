@@ -2,6 +2,7 @@
 <html lang="zh-Hant">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>TWICE 應援電子書</title>
 
 <!-- 中文：Noto Sans TC（源泉圓體），英文：Times New Roman -->
@@ -254,42 +255,40 @@
     .page-arrow.left { left: 8px; }
     .page-arrow.right { right: 8px; }
 
-   /* 📚 底部固定導覽列：閱讀器 Dock 風格 */
+/* 📚 底部導覽列（電腦版正常，手機 PWA 避開 home bar） */
 .bottom-bar {
     position: fixed;
     left: 0;
     right: 0;
     bottom: 0;
-    background: #ffffffd8;            /* 半透明白底 */
-    backdrop-filter: blur(12px);      /* 毛玻璃效果 */
+    background: #ffffffd8;
+    backdrop-filter: blur(12px);
     color: #111;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 8px 10px 12px;
+    padding: 6px 10px; /* 🖥️ 電腦版 padding 正常 */
     z-index: 950;
-    font-size: 15px;
+    font-size: 14px;
     border-top: 1px solid #eee;
 }
 
-/* 每顆按鈕像 Dock 裡的大按鈕 */
 .bottom-bar button,
 .bottom-bar a {
-    flex: 1;                           /* 四顆平均分寬度 */
-    margin: 0 6px;
+    flex: 1;
+    margin: 0 4px;
     border: none;
-    border-radius: 14px;
-    padding: 12px 0;                   /* 比較高、好按 */
+    border-radius: 12px;
+    padding: 8px 0; /* 🖥️ 電腦版按鈕高度正常 */
     background: var(--twice-main);
     color: #111;
     font-weight: 700;
-    font-size: 16px;                   /* 字變大 */
+    font-size: 15px;
     text-align: center;
     text-decoration: none;
     font-family: 'Noto Sans TC', 'Times New Roman', serif;
 }
 
-/* 不能按的樣式 */
 .bottom-bar button:disabled {
     opacity: 0.4;
     cursor: default;
@@ -299,6 +298,22 @@
     opacity: 0.4;
     pointer-events: none;
 }
+
+
+/* 📱 手機 & PWA 專用（加大按鈕 + 避開 iPhone home bar） */
+@media (max-width: 768px) {
+    .bottom-bar {
+        padding: 10px 10px calc(14px + env(safe-area-inset-bottom));
+        font-size: 15px;
+    }
+
+    .bottom-bar button,
+    .bottom-bar a {
+        padding: 12px 0;  /* 📱 手機按鈕更好按 */
+        font-size: 16px;
+    }
+}
+
 
 /* 底部目錄面板（新版放大） */
 .dir-overlay {
@@ -360,17 +375,17 @@
     color: #111;
 }
 /* RWD：手機 */
-/* RWD：手機 */
 @media (max-width: 768px) {
     .app {
         flex-direction: column;
     }
 
     /* 主內容左右幾乎貼滿螢幕，預留一點邊距就好 */
-    .main {
-        padding: 12px 8px 80px;   /* 下方留空給底部工具列 */
-        align-items: stretch;     /* 讓白色卡片撐滿整個寬度 */
+   .main {
+        padding: 12px 8px calc(90px + env(safe-area-inset-bottom));
+        align-items: stretch;
     }
+}
 
     /* 白色卡片放大到幾乎全寬 */
     .page-card {
@@ -413,7 +428,7 @@
 
 /* 🔥 底部工具列 TWICE LOGO（你要放在這裡） */
 .bottom-logo {
-    height: 32px;      /* LOGO 大小 */
+    height: 40px;      /* LOGO 大小 */
     width: auto;
     margin: 0 10px;
     display: block;
@@ -677,4 +692,3 @@
 
 </body>
 </html>
-
