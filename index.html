@@ -32,8 +32,9 @@
         display: flex;
     }
 
-    /* 側邊選單 */
+    /* 側邊選單（現在整個隱藏） */
     #sidebar {
+        display: none;
         width: 220px;
         background: rgba(0,0,0,0.85);
         color: #fff;
@@ -77,21 +78,9 @@
         color: #111;
     }
 
-    /* 手機用的側邊開關 */
+    /* 左上角目錄鈕也隱藏 */
     .menu-btn {
-        display: block;
-        position: fixed;
-        top: 10px;
-        left: 10px;
-        z-index: 1001;
-        background: rgba(0,0,0,0.75);
-        color: #fff;
-        border: none;
-        border-radius: 8px;
-        padding: 8px 10px;
-        font-size: 16px;
-        cursor: pointer;
-        font-family: 'Noto Sans TC', 'Times New Roman', serif;
+        display: none;
     }
 
     /* 主內容區 */
@@ -188,13 +177,13 @@
     .nayeon  { background: #AEE3FF; color:#003655; }
     .jeongyeon { background: #9ED88D; color:#143A0A; }
     .dahyun {
-    background: #FFFFFF;       /* 白色背景 */
-    color: #333333;            /* 深灰黑字 */
-    border: 2px solid #FF5FA2; /* Pantone 812C（主色）外框 */
-}
-.song-grid .dahyun {
-    color: #333333 !important;
-}
+        background: #FFFFFF;       /* 白色背景 */
+        color: #333333;            /* 深灰黑字 */
+        border: 2px solid #FF5FA2; /* Pantone 812C（主色）外框 */
+    }
+    .song-grid .dahyun {
+        color: #333333 !important;
+    }
 
     .chaeyoung { background: #FF4A4A; }
     .jihyo   { background: #F7C63D; color:#5A3C00; }
@@ -202,21 +191,7 @@
     .momo    { background: #FF8AB7; }
     .normal  { background: var(--twice-main); }
 
-    /* 歌曲頁內容 */
-    .song-title {
-        font-size: 22px;
-        margin-bottom: 6px;
-        text-align: center;
-        font-family: 'Noto Sans TC', 'Times New Roman', serif;
-    }
-
-    .song-sub {
-        text-align: center;
-        font-size: 14px;
-        color: #777;
-        margin-bottom: 16px;
-    }
-
+    /* 歌曲頁內容：圖片滿版 */
     .song-content {
         display: flex;
         flex-direction: column;
@@ -225,35 +200,13 @@
     }
 
     #song-image {
-        width: 100%;
-        max-height: calc(100vh - 180px);
-        border-radius: 14px;
-        box-shadow: 0 6px 16px rgba(0,0,0,0.3);
-        transition: transform 0.2s;
+        width: 100vw;
+        height: 100vh;
+        max-height: 100vh;
+        border-radius: 0;
+        box-shadow: none;
         object-fit: contain;
-    }
-
-    .song-right {
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-        min-width: 180px;
-        align-items: center;
-    }
-
-    .yt-btn {
-        padding: 10px 14px;
-        border-radius: 10px;
-        border: none;
-        background: #FF0000;
-        color: #fff;
-        font-weight: 700;
-        cursor: pointer;
-        text-decoration: none;
-        text-align: center;
-        font-size: 14px;
-        font-family: 'Noto Sans TC', 'Times New Roman', serif;
-        min-width: 180px;
+        display: block;
     }
 
     /* 左右懸浮箭頭 */
@@ -279,102 +232,102 @@
     .page-arrow.left { left: 8px; }
     .page-arrow.right { right: 8px; }
 
-    /* 底部工具列（可滑出） */
-    .bottom-handle {
-        position: fixed;
-        bottom: 6px;
-        left: 50%;
-        transform: translateX(-50%);
-        background: rgba(0,0,0,0.7);
-        color: #fff;
-        padding: 4px 12px;
-        border-radius: 999px;
-        font-size: 12px;
-        cursor: pointer;
-        z-index: 950;
-        font-family: 'Noto Sans TC', 'Times New Roman', serif;
-        display: none; /* 首頁不顯示 */
-    }
-
-    .bottom-tools {
+    /* 底部固定導覽列 */
+    .bottom-bar {
         position: fixed;
         left: 0;
         right: 0;
         bottom: 0;
-        transform: translateY(100%);
-        transition: transform 0.25s;
-        z-index: 940;
-        display: flex;
-        justify-content: center;
-        pointer-events: none;
-    }
-
-    .bottom-tools.open {
-        transform: translateY(0);
-    }
-
-    .bottom-inner {
         background: rgba(0,0,0,0.85);
         color: #fff;
-        width: 100%;
-        max-width: 900px;
-        border-radius: 16px 16px 0 0;
-        padding: 10px 12px 12px;
-        pointer-events: auto;
-    }
-
-    .toolbar-row {
         display: flex;
-        flex-wrap: wrap;
-        gap: 8px;
-        justify-content: center;
+        justify-content: space-around;
         align-items: center;
+        padding: 8px 10px;
+        z-index: 950;
+        font-size: 13px;
     }
 
-    .toolbar-row button,
-    .toolbar-row a,
-    .toolbar-row select {
-        font-family: 'Noto Sans TC', 'Times New Roman', serif;
-    }
-
-    .tool-btn {
-        padding: 6px 10px;
-        border-radius: 8px;
+    .bottom-bar button,
+    .bottom-bar a {
         border: none;
+        border-radius: 999px;
+        padding: 6px 14px;
         background: var(--twice-main);
         color: #111;
         font-weight: 700;
-        cursor: pointer;
-        font-size: 13px;
-        min-width: 80px;
+        text-decoration: none;
+        font-family: 'Noto Sans TC', 'Times New Roman', serif;
     }
 
-    .tool-btn:disabled {
+    .bottom-bar button:disabled {
         opacity: 0.5;
         cursor: default;
     }
 
-    #tool-video {
-        text-decoration: none;
-        display: inline-block;
+    .bottom-bar a.disabled {
+        opacity: 0.5;
+        pointer-events: none;
     }
 
-    #zoom-select {
-        padding: 5px 8px;
-        border-radius: 8px;
-        border: 1px solid #ccc;
-        font-size: 13px;
+    /* 底部目錄面板 */
+    .dir-overlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(0,0,0,0.5);
+        display: none;
+        align-items: flex-end;
+        z-index: 960;
     }
 
-    .tool-label {
-        font-size: 12px;
+    .dir-overlay.open {
+        display: flex;
     }
 
-    .page-info {
+    .dir-sheet {
+        background: #222;
+        color: #fff;
+        width: 100%;
+        max-height: 75vh;
+        border-radius: 16px 16px 0 0;
+        padding: 10px 14px 14px;
+        overflow-y: auto;
+    }
+
+    .dir-title {
         text-align: center;
-        margin-top: 6px;
-        font-size: 12px;
+        margin-bottom: 8px;
+        font-weight: 700;
+        font-size: 16px;
+    }
+
+    .dir-list {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    .dir-list li {
+        margin-bottom: 4px;
+    }
+
+    .dir-list button {
+        width: 100%;
+        text-align: left;
+        border: none;
+        background: transparent;
         color: #eee;
+        padding: 8px 6px;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 14px;
+        font-family: 'Noto Sans TC', 'Times New Roman', serif;
+    }
+
+    .dir-list button.active,
+    .dir-list button:hover {
+        background: var(--twice-main);
+        color: #111;
     }
 
     /* RWD：手機 */
@@ -383,57 +336,32 @@
             flex-direction: column;
         }
 
-        #sidebar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            height: 100vh;
-            transform: translateX(-100%);
-            transition: transform 0.25s;
-            z-index: 1000;
-        }
-
-        #sidebar.open {
-            transform: translateX(0);
-        }
-
-        .menu-btn {
-            display: block;
-        }
-
         .main {
-            padding: 60px 12px 20px;
+            padding: 0;
         }
 
         .page-card {
-            padding: 16px 12px 22px;
-        }
-
-        #song-image {
-            max-height: calc(100vh - 150px);
-        }
-
-        .bottom-inner {
-            border-radius: 14px 14px 0 0;
+            max-width: 100%;
+            width: 100%;
+            padding: 0;
+            background: transparent;
+            box-shadow: none;
+            border-radius: 0;
         }
     }
 </style>
 </head>
 <body>
 
-<button class="menu-btn" onclick="toggleSidebar()">☰ 目錄</button>
-
 <!-- 左右翻頁懸浮箭頭 -->
 <button class="page-arrow left" id="arrow-left" onclick="goPrev()">‹</button>
 <button class="page-arrow right" id="arrow-right" onclick="goNext()">›</button>
 
 <div class="app">
-    <!-- 側邊目錄 -->
+    <!-- 側邊目錄（已隱藏，不再使用） -->
     <aside id="sidebar">
         <h2>TWICE 目錄</h2>
-        <ul id="toc">
-            <!-- JS 會塞進來 -->
-        </ul>
+        <ul id="toc"></ul>
     </aside>
 
     <!-- 主頁面 -->
@@ -444,31 +372,21 @@
     </main>
 </div>
 
-<!-- 底部工具列 -->
-<div class="toolbar-row">
-    <button class="tool-btn" id="tool-prev" onclick="goPrev()">上一頁</button>
-    <button class="tool-btn" id="tool-next" onclick="goNext()">下一頁</button>
-
-    <!-- 🔹 新增：打開/收合左邊目錄 -->
-    <button class="tool-btn" onclick="toggleSidebar()">目錄</button>
-
-    <span class="tool-label">縮放：</span>
-    <select id="zoom-select" onchange="changeZoom()">
-        <option value="0.75">75%</option>
-        <option value="1" selected>100%</option>
-        <option value="1.25">125%</option>
-        <option value="1.5">150%</option>
-    </select>
-
-    <a class="tool-btn" id="tool-video" href="#" target="_blank" rel="noopener noreferrer">
-        看影片
-    </a>
+<!-- 底部固定導覽列 -->
+<div class="bottom-bar">
+    <button id="bottom-prev" onclick="goPrev()">上一頁</button>
+    <button id="bottom-dir" onclick="toggleDirectory()">目錄</button>
+    <a id="bottom-video" href="#" target="_blank" rel="noopener noreferrer" class="disabled">影片</a>
+    <button id="bottom-next" onclick="goNext()">下一頁</button>
 </div>
-        <div class="page-info" id="page-info"></div>
+
+<!-- 底部目錄面板 -->
+<div id="directory-overlay" class="dir-overlay" onclick="directoryBackgroundClick(event)">
+    <div class="dir-sheet">
+        <div class="dir-title">TWICE 目錄</div>
+        <ul id="dir-list" class="dir-list"></ul>
     </div>
 </div>
-
-<div class="bottom-handle" id="bottom-handle" onclick="toggleTools()">▲ 工具列</div>
 
 <script>
     // 歌曲資料：index 1..23，0 是首頁
@@ -524,72 +442,68 @@
 
     const totalPages = songs.length - 1;
     let currentPage = 0; // 0 = 首頁
-    let zoom = 1.0;
-    let currentSongUrl = '';
 
     const pageContent = document.getElementById('page-content');
-    const pageInfo = document.getElementById('page-info');
-    const toc = document.getElementById('toc');
-    const bottomTools = document.getElementById('bottom-tools');
-    const bottomHandle = document.getElementById('bottom-handle');
+    const dirOverlay = document.getElementById('directory-overlay');
+    const dirList = document.getElementById('dir-list');
+    const bottomPrev = document.getElementById('bottom-prev');
+    const bottomNext = document.getElementById('bottom-next');
+    const bottomVideo = document.getElementById('bottom-video');
     const arrowLeft = document.getElementById('arrow-left');
     const arrowRight = document.getElementById('arrow-right');
-    const toolVideo = document.getElementById('tool-video');
-    const toolPrev = document.getElementById('tool-prev');
-    const toolNext = document.getElementById('tool-next');
-    const zoomSelect = document.getElementById('zoom-select');
 
-    // 建立側邊目錄
-    function buildToc() {
-        let liHome = document.createElement('li');
-        let btnHome = document.createElement('button');
+    function buildDirectory() {
+        dirList.innerHTML = '';
+
+        // 首頁
+        const liHome = document.createElement('li');
+        const btnHome = document.createElement('button');
         btnHome.textContent = '首頁';
-        btnHome.onclick = () => { goHome(); closeSidebarOnMobile(); };
+        btnHome.dataset.page = '0';
+        btnHome.onclick = () => { currentPage = 0; closeDirectory(); render(); };
         liHome.appendChild(btnHome);
-        toc.appendChild(liHome);
+        dirList.appendChild(liHome);
 
+        // 歌曲
         for (let i = 1; i <= totalPages; i++) {
             const li = document.createElement('li');
             const btn = document.createElement('button');
             btn.textContent = i + '. ' + songs[i].title;
-            btn.onclick = () => { goTo(i); closeSidebarOnMobile(); };
             btn.dataset.page = i;
+            btn.onclick = () => { currentPage = i; closeDirectory(); render(); };
             li.appendChild(btn);
-            toc.appendChild(li);
+            dirList.appendChild(li);
         }
     }
 
-    function render() {
-        document.querySelectorAll('#toc button').forEach(btn => btn.classList.remove('active'));
+    function updateDirActive() {
+        dirList.querySelectorAll('button').forEach(b => b.classList.remove('active'));
+        const selector = currentPage === 0 ? 'button[data-page="0"]' : `button[data-page="${currentPage}"]`;
+        const activeBtn = dirList.querySelector(selector);
+        if (activeBtn) activeBtn.classList.add('active');
+    }
 
+    function render() {
         if (currentPage === 0) {
             renderHome();
-            pageInfo.textContent = '首頁';
-            const firstBtn = document.querySelector('#toc button');
-            if (firstBtn) firstBtn.classList.add('active');
-
-            // 首頁：隱藏工具列與箭頭
-            bottomTools.classList.remove('open');
-            bottomTools.style.display = 'none';
-            bottomHandle.style.display = 'none';
+            // 首頁：箭頭隱藏、影片不可按
             arrowLeft.style.display = 'none';
             arrowRight.style.display = 'none';
+            bottomPrev.disabled = true;
+            bottomNext.disabled = false;
+            bottomVideo.classList.add('disabled');
+            bottomVideo.removeAttribute('href');
         } else {
             renderSong(currentPage);
-            pageInfo.textContent = `第 ${currentPage} / ${totalPages} 頁`;
-            const btn = document.querySelector(`#toc button[data-page="${currentPage}"]`);
-            if (btn) btn.classList.add('active');
-
-            // 歌曲頁：顯示工具列 handle & 箭頭
-            bottomTools.style.display = 'flex';
-            bottomHandle.style.display = 'none';
             arrowLeft.style.display = 'flex';
             arrowRight.style.display = 'flex';
-
-            // 工具列的上一頁 / 下一頁 disable 狀態
-            toolPrev.disabled = (currentPage === 0);
-            toolNext.disabled = (currentPage === totalPages);
+            bottomPrev.disabled = (currentPage === 0);
+            bottomNext.disabled = (currentPage === totalPages);
+            bottomVideo.classList.remove('disabled');
+            bottomVideo.href = songs[currentPage].url;
         }
+
+        updateDirActive();
     }
 
     function renderHome() {
@@ -617,31 +531,18 @@
             const btn = document.createElement('button');
             btn.textContent = songs[i].title;
             btn.classList.add(songs[i].className || 'normal');
-            btn.onclick = () => goTo(i);
+            btn.onclick = () => { currentPage = i; render(); };
             grid.appendChild(btn);
         }
     }
 
     function renderSong(idx) {
         const song = songs[idx];
-        zoom = 1.0;
-        zoomSelect.value = '1';
-        currentSongUrl = song.url;
-
         pageContent.innerHTML = `
-            <div class="song-title">${song.display}</div>
-            <div class="song-sub">TWICE 台灣演唱會 · 應援筆記</div>
             <div class="song-content">
                 <img id="song-image" src="${song.img}" alt="${song.display}">
-                <div class="song-right">
-                    <a class="yt-btn" href="${song.url}" target="_blank" rel="noopener noreferrer">
-                        ▶ 前往 YouTube 應援影片
-                    </a>
-                </div>
             </div>
         `;
-
-        toolVideo.href = song.url;
     }
 
     // 翻頁控制
@@ -670,69 +571,32 @@
         }
     }
 
-    // 縮放控制（用下拉選單）
-    function applyZoom() {
-        const img = document.getElementById('song-image');
-        if (img) img.style.transform = `scale(${zoom})`;
+    // 底部目錄面板控制
+    function toggleDirectory() {
+        dirOverlay.classList.toggle('open');
     }
 
-    function changeZoom() {
-        const val = parseFloat(zoomSelect.value || '1');
-        zoom = val;
-        applyZoom();
+    function closeDirectory() {
+        dirOverlay.classList.remove('open');
     }
 
-    // 手機側邊欄控制
-    function toggleSidebar() {
-        const sb = document.getElementById('sidebar');
-        sb.classList.toggle('open');
-    }
-
-    function closeSidebarOnMobile() {
-        if (window.innerWidth <= 768) {
-            document.getElementById('sidebar').classList.remove('open');
+    function directoryBackgroundClick(e) {
+        if (e.target.id === 'directory-overlay') {
+            closeDirectory();
         }
     }
 
-    // 工具列開關
-    function toggleTools() {
-        bottomTools.classList.toggle('open');
-    }
-
-    function closeTools() {
-        bottomTools.classList.remove('open');
-    }
-// 點主畫面切換工具列（歌曲頁才有作用）
-const mainArea = document.getElementById('main-area');
-
-mainArea.addEventListener('click', function (e) {
-    // 首頁不顯示工具列
-    if (currentPage === 0) return;
-
-    // 點到底部工具列本身，不要 toggle
-    if (e.target.closest('#bottom-tools')) return;
-
-    // 點左右箭頭，不要 toggle
-    if (e.target.closest('.page-arrow')) return;
-
-    // 點左上角目錄鈕，不要 trigger toggle
-    if (e.target.closest('.menu-btn')) return;
-
-    // 其餘點一下就切換工具列出現/收起
-    toggleTools();
-});
-
     // 初始化
-    buildToc();
+    buildDirectory();
     render();
 
     // 讓按鈕可以叫到的函式掛到 window
     window.goHome = goHome;
     window.goPrev = goPrev;
     window.goNext = goNext;
-    window.changeZoom = changeZoom;
-    window.toggleSidebar = toggleSidebar;
-    window.toggleTools = toggleTools;
+    window.goTo = goTo;
+    window.toggleDirectory = toggleDirectory;
+    window.directoryBackgroundClick = directoryBackgroundClick;
 </script>
 
 </body>
