@@ -187,7 +187,15 @@
     .mina    { background: #7EE8C3; color:#034036; }
     .nayeon  { background: #AEE3FF; color:#003655; }
     .jeongyeon { background: #9ED88D; color:#143A0A; }
-    .dahyun  { background: #FFFFFF; color: var(--twice-main); border: 2px solid var(--twice-main); }
+    .dahyun {
+    background: #FFFFFF;       /* 白色背景 */
+    color: #333333;            /* 深灰黑字 */
+    border: 2px solid #FF5FA2; /* Pantone 812C（主色）外框 */
+}
+.song-grid .dahyun {
+    color: #333333 !important;
+}
+
     .chaeyoung { background: #FF4A4A; }
     .jihyo   { background: #F7C63D; color:#5A3C00; }
     .sana    { background: #A48DFF; }
@@ -471,11 +479,11 @@
           url: 'https://www.youtube.com/watch?v=kJItjpQoFgU&list=PLou4rSGgyTxa3Nqtb4JMR-i6oHLuiP8ao&index=2', className: 'normal' },
         { title: 'SET ME FREE', display: 'SET ME FREE', img: 'set_me_free.jpg',
           url: 'https://www.youtube.com/watch?v=rYWvOyGg0b8&list=PLou4rSGgyTxa3Nqtb4JMR-i6oHLuiP8ao&index=3', className: 'normal' },
-        { title: "I CAN'T STOP ME", display: "I CAN'T STOP ME", img: 'i_cant_stop_me.jpg',
+        { title: "I CAN'T STOP ME", display: "I CAN'T STOP ME", img: 'icsm.jpg',
           url: 'https://www.youtube.com/watch?v=ESn0dkDh000&list=PLou4rSGgyTxa3Nqtb4JMR-i6oHLuiP8ao&index=4', className: 'normal' },
         { title: 'I GOT YOU', display: 'I GOT YOU', img: 'i_got_you.jpg',
           url: 'https://www.youtube.com/watch?v=ZLAPXBbc0gk&list=PLou4rSGgyTxa3Nqtb4JMR-i6oHLuiP8ao&index=5', className: 'normal' },
-        { title: 'RUN AWAY', display: 'RUN AWAY（TZUYU）', img: 'run_away.jpg',
+        { title: 'RUN AWAY', display: 'RUN AWAY（TZUYU）', img: 'runaway.jpg',
           url: 'https://www.youtube.com/watch?v=yPCn_7DMCw0&list=PLou4rSGgyTxa3Nqtb4JMR-i6oHLuiP8ao&index=23', className: 'tzuyu' },
         { title: 'DIVE IN', display: 'DIVE IN（TZUYU）', img: 'dive_in.jpg',
           url: 'https://www.youtube.com/watch?v=HDteEotcxaY&list=PLou4rSGgyTxa3Nqtb4JMR-i6oHLuiP8ao&index=12', className: 'tzuyu' },
@@ -487,11 +495,11 @@
           url: 'https://www.youtube.com/watch?v=UBztpe1hh8c&list=PLou4rSGgyTxa3Nqtb4JMR-i6oHLuiP8ao&index=15', className: 'jeongyeon' },
         { title: 'CHESS', display: 'CHESS（DAHYUN）', img: 'chess.jpg',
           url: 'https://www.youtube.com/watch?v=kr1mThC2n1s&list=PLou4rSGgyTxa3Nqtb4JMR-i6oHLuiP8ao&index=16', className: 'dahyun' },
-        { title: '能 SHOOT', display: '能 SHOOT（CHAEYOUNG）', img: 'neng_shoot.jpg',
+        { title: 'SHOOT', display: 'SHOOT（CHAEYOUNG）', img: 'shoot.jpg',
           url: 'https://www.youtube.com/watch?v=2lV1cTppl6c&list=PLou4rSGgyTxa3Nqtb4JMR-i6oHLuiP8ao&index=17', className: 'chaeyoung' },
         { title: 'ATM', display: 'ATM（JIHYO）', img: 'atm.jpg',
           url: 'https://www.youtube.com/watch?v=S_3pHAHnfDU&list=PLou4rSGgyTxa3Nqtb4JMR-i6oHLuiP8ao&index=18', className: 'jihyo' },
-        { title: 'DECAFFEINATED', display: 'DECAFFEINATED（SANA）', img: 'decaffeinated.jpg',
+        { title: 'DECAFFEINATED', display: 'DECAFFEINATED（SANA）', img: 'decaf.jpg',
           url: 'https://www.youtube.com/watch?v=MPR4RbVACzk&list=PLou4rSGgyTxa3Nqtb4JMR-i6oHLuiP8ao&index=19', className: 'sana' },
         { title: 'MOVE LIKE THAT', display: 'MOVE LIKE THAT（MOMO）', img: 'move_like_that.jpg',
           url: 'https://www.youtube.com/watch?v=zmn8BCIdzSE&list=PLou4rSGgyTxa3Nqtb4JMR-i6oHLuiP8ao&index=20', className: 'momo' },
@@ -501,7 +509,7 @@
           url: 'https://www.youtube.com/watch?v=iCMJcXXug3s&list=PLou4rSGgyTxa3Nqtb4JMR-i6oHLuiP8ao&index=7', className: 'normal' },
         { title: 'YES OR YES', display: 'YES OR YES', img: 'yes_or_yes.jpg',
           url: 'https://www.youtube.com/watch?v=Udud0ZjVWCE&list=PLou4rSGgyTxa3Nqtb4JMR-i6oHLuiP8ao&index=8', className: 'normal' },
-        { title: 'DANCE THE NIGHT AWAY', display: 'DANCE THE NIGHT AWAY', img: 'dance_the_night_away.jpg',
+        { title: 'DANCE THE NIGHT AWAY', display: 'DANCE THE NIGHT AWAY', img: 'dancethenightaway.jpg',
           url: 'https://www.youtube.com/watch?v=ve7PuS91s14&list=PLou4rSGgyTxa3Nqtb4JMR-i6oHLuiP8ao&index=9', className: 'normal' },
         { title: 'FEEL SPECIAL', display: 'FEEL SPECIAL', img: 'feel_special.jpg',
           url: 'https://www.youtube.com/watch?v=IOmuE8keA7g&list=PLou4rSGgyTxa3Nqtb4JMR-i6oHLuiP8ao&index=10', className: 'normal' },
