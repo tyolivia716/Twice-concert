@@ -6,163 +6,129 @@
 <title>TWICE 應援電子書</title>
 
 <!-- 中文：Noto Sans TC（源泉圓體），英文：Times New Roman -->
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+SansTC:wght@400;700&display=swap" rel="stylesheet">
 
 <style>
-    :root {
-        /* Pantone 812C approx hex */
-        --twice-main: #FF5FA2;
-        --bg-overlay: rgba(255,255,255,0.92);
-    }
+:root {
+    /* Pantone 812C approx hex */
+    --twice-main: #FF5FA2;
+    --bg-overlay: rgba(255,255,255,0.92);
+}
 
-    * {
-        box-sizing: border-box;
-    }
+* {
+    box-sizing: border-box;
+}
 
-    body {
-        margin: 0;
-        font-family: 'Noto Sans TC', 'Times New Roman', serif;
-        background: url('your_twice_background.jpg') center/cover fixed no-repeat;
-        color: #222;
-    }
+body {
+    margin: 0;
+    font-family: 'Noto Sans TC', 'Times New Roman', serif;
+    background: url('your_twice_background.jpg') center/cover fixed no-repeat;
+    color: #222;
+}
 
-    .app {
-        min-height: 100vh;
-        backdrop-filter: blur(4px);
-        background: rgba(0,0,0,0.35);
-        display: flex;
-    }
+.app {
+    min-height: 100vh;
+    backdrop-filter: blur(4px);
+    background: rgba(0,0,0,0.35);
+    display: flex;
+}
 
-    /* 側邊選單（現在整個隱藏） */
-    #sidebar {
-        display: none;
-        width: 220px;
-        background: rgba(0,0,0,0.85);
-        color: #fff;
-        padding: 16px 10px;
-        overflow-y: auto;
-    }
+/* 側邊選單（現在整個隱藏） */
+#sidebar {
+    display: none;
+}
 
-    #sidebar h2 {
-        font-size: 18px;
-        margin: 0 0 12px;
-        text-align: center;
-        font-family: 'Noto Sans TC', 'Times New Roman', serif;
-    }
+/* 左上角目錄鈕也隱藏 */
+.menu-btn {
+    display: none;
+}
 
-    #sidebar ul {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-    }
+/* 主內容區 */
+.main {
+    flex: 1;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
 
-    #sidebar li {
-        margin-bottom: 6px;
-    }
+.page-card {
+    width: 100%;
+    max-width: 900px;
+    background: var(--bg-overlay);
+    border-radius: 16px;
+    padding: 20px 18px 28px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.35);
+}
 
-    #sidebar button {
-        width: 100%;
-        border: none;
-        background: transparent;
-        color: #eee;
-        text-align: left;
-        padding: 6px 8px;
-        border-radius: 6px;
-        cursor: pointer;
-        font-size: 14px;
-        font-family: 'Noto Sans TC', 'Times New Roman', serif;
-    }
+h1 {
+    margin-top: 0;
+    text-align: center;
+}
 
-    #sidebar button:hover,
-    #sidebar button.active {
-        background: var(--twice-main);
-        color: #111;
-    }
+.subtitle {
+    text-align: center;
+    color: #666;
+    margin-bottom: 16px;
+    font-size: 14px;
+}
 
-    /* 左上角目錄鈕也隱藏 */
-    .menu-btn {
-        display: none;
-    }
+/* 首頁按鈕區 */
+.home-btn-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 16px;
+}
 
-    /* 主內容區 */
-    .main {
-        flex: 1;
-        padding: 20px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: flex-start;
-    }
+.home-btn-row a {
+    text-decoration: none;
+}
 
-    .page-card {
-        width: 100%;
-        max-width: 900px;
-        background: var(--bg-overlay);
-        border-radius: 16px;
-        padding: 20px 18px 28px;
-        box-shadow: 0 10px 25px rgba(0,0,0,0.35);
-    }
+.primary-link {
+    padding: 10px 16px;
+    border-radius: 10px;
+    border: 2px solid var(--twice-main);
+    background: white;
+    color: #111;
+    font-weight: 700;
+    font-size: 14px;
+    cursor: pointer;
+    display: inline-block;
+    min-width: 200px;
+    text-align: center;
+}
 
-    h1 {
-        margin-top: 0;
-        text-align: center;
-        font-family: 'Noto Sans TC', 'Times New Roman', serif;
-    }
+.primary-link:hover {
+    background: var(--twice-main);
+    color: #111;
+}
 
-    .subtitle {
-        text-align: center;
-        color: #666;
-        margin-bottom: 16px;
-        font-size: 14px;
-    }
-
-    /* 首頁按鈕區 */
-    .home-btn-row {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 10px;
-        margin-bottom: 16px;
-    }
-
-    .home-btn-row a {
-        text-decoration: none;
-    }
-
-    .primary-link {
-        padding: 10px 16px;
-        border-radius: 10px;
-        border: 2px solid var(--twice-main);
-        background: white;
-        color: #111;
-        font-weight: 700;
-        font-size: 14px;
-        cursor: pointer;
-        display: inline-block;
-        min-width: 200px;
-        text-align: center;
-        font-family: 'Noto Sans TC', 'Times New Roman', serif;
-    }
-
-    .primary-link:hover {
-        background: var(--twice-main);
-        color: #111;
-    }
-
-/* 🔥 手機首頁歌曲按鈕：變成 3 欄、大字、大按鈕 */
+/* 🔥 手機優先的歌曲按鈕排版：預設 3 欄 */
 .song-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr); /* 手機 3 欄 */
-    gap: 12px;                 /* 按鈕間距更大 */
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
     margin-top: 10px;
-    padding: 0 10px;           /* 讓左右不會貼邊 */
+    padding: 0 10px;
 }
 
 .song-grid button {
-    padding: 14px 0;           /* 高度變大 */
-    font-size: 16px;           /* 字更大 */
-    font-weight: 700;
+    padding: 14px 0;
     border-radius: 12px;
+    border: none;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    color: #fff;
+    transition: transform 0.15s;
+    font-family: 'Noto Sans TC', 'Times New Roman', serif;
+}
+
+.song-grid button:hover {
+    transform: translateY(-2px);
 }
 
 /* 平板以上切到 4 欄 */
@@ -178,99 +144,88 @@
         grid-template-columns: repeat(5, 1fr);
     }
 }
-    .song-grid button {
-        padding: 8px 10px;
-        border-radius: 10px;
-        border: none;
-        font-size: 14px;
-        font-weight: 700;
-        cursor: pointer;
-        color: #fff;
-        transition: transform 0.15s;
-        font-family: 'Noto Sans TC', 'Times New Roman', serif;
-    }
 
-    .song-grid button:hover {
-        transform: translateY(-2px);
-    }
+/* 應援色 */
+.tzuyu   { background: #0C2D83; }
+.mina    { background: #7EE8C3; color:#034036; }
+.nayeon  { background: #AEE3FF; color:#003655; }
+.jeongyeon { background: #9ED88D; color:#143A0A; }
+.dahyun {
+    background: #FFFFFF;
+    color: #333333;
+    border: 2px solid #FF5FA2;
+}
+.song-grid .dahyun {
+    color: #333333 !important;
+}
+.chaeyoung { background: #FF4A4A; }
+.jihyo   { background: #F7C63D; color:#5A3C00; }
+.sana    { background: #A48DFF; }
+.momo    { background: #FF8AB7; }
+.normal  { background: var(--twice-main); }
 
-    /* 應援色 */
-    .tzuyu   { background: #0C2D83; }
-    .mina    { background: #7EE8C3; color:#034036; }
-    .nayeon  { background: #AEE3FF; color:#003655; }
-    .jeongyeon { background: #9ED88D; color:#143A0A; }
-    .dahyun {
-        background: #FFFFFF;       /* 白色背景 */
-        color: #333333;            /* 深灰黑字 */
-        border: 2px solid #FF5FA2; /* Pantone 812C（主色）外框 */
-    }
-    .song-grid .dahyun {
-        color: #333333 !important;
-    }
+/* 歌曲頁內容：圖片滿版 */
+.song-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+}
 
-    .chaeyoung { background: #FF4A4A; }
-    .jihyo   { background: #F7C63D; color:#5A3C00; }
-    .sana    { background: #A48DFF; }
-    .momo    { background: #FF8AB7; }
-    .normal  { background: var(--twice-main); }
+#song-image {
+    width: 100vw;
+    height: 100vh;
+    max-height: 100vh;
+    border-radius: 0;
+    box-shadow: none;
+    object-fit: contain;
+    display: block;
+}
 
-    /* 歌曲頁內容：圖片滿版 */
-    .song-content {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 12px;
-    }
+/* 左右懸浮箭頭 */
+.page-arrow {
+    position: fixed;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 900;
+    width: 40px;
+    height: 40px;
+    border-radius: 20px;
+    border: none;
+    background: rgba(0,0,0,0.65);
+    color: #fff;
+    font-size: 20px;
+    cursor: pointer;
+    display: none; /* 預設隱藏，歌曲頁才顯示 */
+    align-items: center;
+    justify-content: center;
+    font-family: 'Noto Sans TC', 'Times New Roman', serif;
+}
+.page-arrow.left { left: 8px; }
+.page-arrow.right { right: 8px; }
 
-    #song-image {
-        width: 100vw;
-        height: 100vh;
-        max-height: 100vh;
-        border-radius: 0;
-        box-shadow: none;
-        object-fit: contain;
-        display: block;
-    }
-
-    /* 左右懸浮箭頭 */
-    .page-arrow {
-        position: fixed;
-        top: 50%;
-        transform: translateY(-50%);
-        z-index: 900;
-        width: 40px;
-        height: 40px;
-        border-radius: 20px;
-        border: none;
-        background: rgba(0,0,0,0.65);
-        color: #fff;
-        font-size: 20px;
-        cursor: pointer;
-        display: none; /* 預設隱藏，歌曲頁才顯示 */
-        align-items: center;
-        justify-content: center;
-        font-family: 'Noto Sans TC', 'Times New Roman', serif;
-    }
-
-    .page-arrow.left { left: 8px; }
-    .page-arrow.right { right: 8px; }
-
-/* 📚 底部導覽列（電腦版正常，手機 PWA 避開 home bar） */
+/* 📚 底部導覽列：可隱藏/顯示 */
 .bottom-bar {
     position: fixed;
     left: 0;
     right: 0;
     bottom: 0;
     background: #ffffffd8;
-    backdrop-filter: blur(12px);
+    backdrop-filter: blur(10px);
     color: #111;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 6px 10px; /* 🖥️ 電腦版 padding 正常 */
+    padding: 4px 8px;
     z-index: 950;
     font-size: 14px;
     border-top: 1px solid #eee;
+    transition: transform 0.2s ease-out;
+}
+
+/* 工具列隱藏時：整條往下移出畫面 */
+.bottom-bar.hidden {
+    transform: translateY(100%);
 }
 
 .bottom-bar button,
@@ -279,11 +234,11 @@
     margin: 0 4px;
     border: none;
     border-radius: 12px;
-    padding: 8px 0; /* 🖥️ 電腦版按鈕高度正常 */
+    padding: 8px 0;
     background: var(--twice-main);
     color: #111;
     font-weight: 700;
-    font-size: 15px;
+    font-size: 14px;
     text-align: center;
     text-decoration: none;
     font-family: 'Noto Sans TC', 'Times New Roman', serif;
@@ -299,23 +254,15 @@
     pointer-events: none;
 }
 
-
-/* 📱 手機 & PWA 專用（加大按鈕 + 避開 iPhone home bar） */
-@media (max-width: 768px) {
-    .bottom-bar {
-        padding: 10px 10px calc(14px + env(safe-area-inset-bottom));
-        font-size: 15px;
-    }
-
-    .bottom-bar button,
-    .bottom-bar a {
-        padding: 12px 0;  /* 📱 手機按鈕更好按 */
-        font-size: 16px;
-    }
+/* TWICE logo：不吃 flex，不被拉扁 */
+.bottom-logo {
+    flex: 0 0 auto;
+    height: 26px;
+    width: auto;
+    margin: 0 4px;
 }
 
-
-/* 底部目錄面板（新版放大） */
+/* 底部目錄面板 */
 .dir-overlay {
     position: fixed;
     inset: 0;
@@ -324,80 +271,70 @@
     align-items: flex-end;
     z-index: 960;
 }
-
 .dir-overlay.open {
     display: flex;
 }
-
 .dir-sheet {
     background: #222;
     color: #fff;
     width: 100%;
-    max-height: 82vh;              /* 面板再高一點 */
+    max-height: 82vh;
     border-radius: 18px 18px 0 0;
-    padding: 16px 20px 20px;       /* 內距加大 */
+    padding: 16px 20px 20px;
     overflow-y: auto;
 }
-
 .dir-title {
     text-align: center;
     margin-bottom: 14px;
     font-weight: 700;
-    font-size: 18px;               /* 標題字加大 */
+    font-size: 18px;
 }
-
 .dir-list {
     list-style: none;
     margin: 0;
     padding: 0;
 }
-
 .dir-list li {
-    margin-bottom: 8px;            /* 行距加大 */
+    margin-bottom: 8px;
 }
-
 .dir-list button {
     width: 100%;
     text-align: left;
     border: none;
     background: transparent;
     color: #eee;
-    padding: 10px 10px;            /* 點擊區域變大 */
+    padding: 10px 10px;
     border-radius: 10px;
     cursor: pointer;
-    font-size: 30px;               /* 章節字體變大 */
+    font-size: 20px; /* 目錄字體大小你可以自己調 */
     font-family: 'Noto Sans TC', 'Times New Roman', serif;
 }
-
 .dir-list button.active,
 .dir-list button:hover {
     background: var(--twice-main);
     color: #111;
 }
+
 /* RWD：手機 */
 @media (max-width: 768px) {
     .app {
         flex-direction: column;
     }
 
-    /* 主內容左右幾乎貼滿螢幕，預留一點邊距就好 */
-   .main {
+    .main {
         padding: 12px 8px calc(90px + env(safe-area-inset-bottom));
         align-items: stretch;
     }
-}
 
-    /* 白色卡片放大到幾乎全寬 */
     .page-card {
-        max-width: none;          /* 不再限制 900px */
+        max-width: none;
         width: 100%;
-        padding: 16px 10px 20px;  /* 手機內距縮小一點看起來更滿 */
+        padding: 16px 10px 20px;
         background: #ffffffee;
         box-shadow: 0 6px 16px rgba(0,0,0,0.25);
         border-radius: 18px;
     }
 
-    /* 首頁上面兩顆大按鈕：改成一列一顆，撐滿寬度 */
     .home-btn-row {
         flex-direction: column;
         gap: 8px;
@@ -410,30 +347,33 @@
         padding: 12px 10px;
     }
 
-    /* 歌曲按鈕：在手機幾乎擺滿整個卡片寬度 */
     .song-grid {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);  /* 每行 3 首，大小剛好 */
+        grid-template-columns: repeat(3, 1fr);
         gap: 10px;
         margin-top: 12px;
     }
 
     .song-grid button {
-        padding: 12px 4px;       /* 按鈕變高 */
-        font-size: 15px;         /* 字放大 */
+        padding: 12px 4px;
+        font-size: 15px;
         border-radius: 10px;
     }
+
+    .bottom-bar {
+        padding-bottom: calc(6px + env(safe-area-inset-bottom));
+        font-size: 15px;
+    }
+
+    .bottom-bar button,
+    .bottom-bar a {
+        padding: 10px 0;
+        font-size: 15px;
+    }
+
+    .bottom-logo {
+        height: 28px;
+    }
 }
-
-
-/* 🔥 底部工具列 TWICE LOGO（你要放在這裡） */
-.bottom-logo {
-    height: 40px;      /* LOGO 大小 */
-    width: auto;
-    margin: 0 10px;
-    display: block;
-}
-
 </style>
 </head>
 <body>
@@ -463,7 +403,7 @@
 
     <button id="bottom-dir" onclick="toggleDirectory()">目錄</button>
 
-    <!-- 🔥 插入 TWICE LOGO（中間） -->
+    <!-- 中間 TWICE Logo -->
     <img src="twice_logo.png" class="bottom-logo" alt="TWICE Logo">
 
     <a id="bottom-video" href="#" target="_blank" rel="noopener noreferrer" class="disabled">影片</a>
@@ -480,214 +420,231 @@
 </div>
 
 <script>
-    // 歌曲資料：index 1..23，0 是首頁
-    const songs = [
-        null,
-        { title: 'THIS IS FOR', display: 'THIS IS FOR', img: 'this_is_for.jpg',
-          url: 'https://www.youtube.com/watch?v=cfMFmH2qmyc&list=PLou4rSGgyTxa3Nqtb4JMR-i6oHLuiP8ao', className: 'normal' },
-        { title: 'STRATEGY', display: 'STRATEGY', img: 'strategy.jpg',
-          url: 'https://www.youtube.com/watch?v=kJItjpQoFgU&list=PLou4rSGgyTxa3Nqtb4JMR-i6oHLuiP8ao&index=2', className: 'normal' },
-        { title: 'SET ME FREE', display: 'SET ME FREE', img: 'set_me_free.jpg',
-          url: 'https://www.youtube.com/watch?v=rYWvOyGg0b8&list=PLou4rSGgyTxa3Nqtb4JMR-i6oHLuiP8ao&index=3', className: 'normal' },
-        { title: "I CAN'T STOP ME", display: "I CAN'T STOP ME", img: 'icsm.jpg',
-          url: 'https://www.youtube.com/watch?v=ESn0dkDh000&list=PLou4rSGgyTxa3Nqtb4JMR-i6oHLuiP8ao&index=4', className: 'normal' },
-        { title: 'I GOT YOU', display: 'I GOT YOU', img: 'i_got_you.jpg',
-          url: 'https://www.youtube.com/watch?v=ZLAPXBbc0gk&list=PLou4rSGgyTxa3Nqtb4JMR-i6oHLuiP8ao&index=5', className: 'normal' },
-        { title: 'RUN AWAY', display: 'RUN AWAY（TZUYU）', img: 'runaway.jpg',
-          url: 'https://www.youtube.com/watch?v=yPCn_7DMCw0&list=PLou4rSGgyTxa3Nqtb4JMR-i6oHLuiP8ao&index=23', className: 'tzuyu' },
-        { title: 'DIVE IN', display: 'DIVE IN（TZUYU）', img: 'dive_in.jpg',
-          url: 'https://www.youtube.com/watch?v=HDteEotcxaY&list=PLou4rSGgyTxa3Nqtb4JMR-i6oHLuiP8ao&index=12', className: 'tzuyu' },
-        { title: 'STONE COLD', display: 'STONE COLD（MINA）', img: 'stone_cold.jpg',
-          url: 'https://www.youtube.com/watch?v=OV0VpwnFhuY&list=PLou4rSGgyTxa3Nqtb4JMR-i6oHLuiP8ao&index=13', className: 'mina' },
-        { title: 'MEEEEEE', display: 'MEEEEEE（NAYEON）', img: 'meeeeee.jpg',
-          url: 'https://www.youtube.com/watch?v=DsaP3UqbIss&list=PLou4rSGgyTxa3Nqtb4JMR-i6oHLuiP8ao&index=14', className: 'nayeon' },
-        { title: 'FIX A DRINK', display: 'FIX A DRINK（JEONGYEON）', img: 'fix_a_drink.jpg',
-          url: 'https://www.youtube.com/watch?v=UBztpe1hh8c&list=PLou4rSGgyTxa3Nqtb4JMR-i6oHLuiP8ao&index=15', className: 'jeongyeon' },
-        { title: 'CHESS', display: 'CHESS（DAHYUN）', img: 'chess.jpg',
-          url: 'https://www.youtube.com/watch?v=kr1mThC2n1s&list=PLou4rSGgyTxa3Nqtb4JMR-i6oHLuiP8ao&index=16', className: 'dahyun' },
-        { title: 'SHOOT', display: 'SHOOT（CHAEYOUNG）', img: 'shoot.jpg',
-          url: 'https://www.youtube.com/watch?v=2lV1cTppl6c&list=PLou4rSGgyTxa3Nqtb4JMR-i6oHLuiP8ao&index=17', className: 'chaeyoung' },
-        { title: 'ATM', display: 'ATM（JIHYO）', img: 'atm.jpg',
-          url: 'https://www.youtube.com/watch?v=S_3pHAHnfDU&list=PLou4rSGgyTxa3Nqtb4JMR-i6oHLuiP8ao&index=18', className: 'jihyo' },
-        { title: 'DECAFFEINATED', display: 'DECAFFEINATED（SANA）', img: 'decaf.jpg',
-          url: 'https://www.youtube.com/watch?v=MPR4RbVACzk&list=PLou4rSGgyTxa3Nqtb4JMR-i6oHLuiP8ao&index=19', className: 'sana' },
-        { title: 'MOVE LIKE THAT', display: 'MOVE LIKE THAT（MOMO）', img: 'move_like_that.jpg',
-          url: 'https://www.youtube.com/watch?v=zmn8BCIdzSE&list=PLou4rSGgyTxa3Nqtb4JMR-i6oHLuiP8ao&index=20', className: 'momo' },
-        { title: 'FANCY', display: 'FANCY', img: 'fancy.jpg',
-          url: 'https://www.youtube.com/watch?v=--fw0TREtPA&list=PLou4rSGgyTxa3Nqtb4JMR-i6oHLuiP8ao&index=6', className: 'normal' },
-        { title: 'WHAT IS LOVE？', display: 'WHAT IS LOVE？', img: 'what_is_love.jpg',
-          url: 'https://www.youtube.com/watch?v=iCMJcXXug3s&list=PLou4rSGgyTxa3Nqtb4JMR-i6oHLuiP8ao&index=7', className: 'normal' },
-        { title: 'YES OR YES', display: 'YES OR YES', img: 'yes_or_yes.jpg',
-          url: 'https://www.youtube.com/watch?v=Udud0ZjVWCE&list=PLou4rSGgyTxa3Nqtb4JMR-i6oHLuiP8ao&index=8', className: 'normal' },
-        { title: 'DANCE THE NIGHT AWAY', display: 'DANCE THE NIGHT AWAY', img: 'dancethenightaway.jpg',
-          url: 'https://www.youtube.com/watch?v=ve7PuS91s14&list=PLou4rSGgyTxa3Nqtb4JMR-i6oHLuiP8ao&index=9', className: 'normal' },
-        { title: 'FEEL SPECIAL', display: 'FEEL SPECIAL', img: 'feel_special.jpg',
-          url: 'https://www.youtube.com/watch?v=IOmuE8keA7g&list=PLou4rSGgyTxa3Nqtb4JMR-i6oHLuiP8ao&index=10', className: 'normal' },
-        { title: 'ONE SPARK', display: 'ONE SPARK', img: 'one_spark.jpg',
-          url: 'https://www.youtube.com/watch?v=_3KdaVwKpXw&list=PLou4rSGgyTxa3Nqtb4JMR-i6oHLuiP8ao&index=11', className: 'normal' },
-        { title: 'TALK THAT TALK', display: 'TALK THAT TALK', img: 'talk_that_talk.jpg',
-          url: 'https://www.youtube.com/watch?v=KIsbsNjtltg&list=PLou4rSGgyTxa3Nqtb4JMR-i6oHLuiP8ao&index=22', className: 'normal' },
-        { title: 'ME+YOU', display: 'ME+YOU', img: 'me_plus_you.jpg',
-          url: 'https://www.youtube.com/watch?v=Wfa3b_sp1Tk&list=PLou4rSGgyTxa3Nqtb4JMR-i6oHLuiP8ao&index=21', className: 'normal' },
-    ];
+// 歌曲資料：index 1..23，0 是首頁
+const songs = [
+    null,
+    { title: 'THIS IS FOR', display: 'THIS IS FOR', img: 'this_is_for.jpg',
+      url: 'https://www.youtube.com/watch?v=cfMFmH2qmyc&list=PLou4rSGgyTxa3Nqtb4JMR-i6oHLuiP8ao', className: 'normal' },
+    { title: 'STRATEGY', display: 'STRATEGY', img: 'strategy.jpg',
+      url: 'https://www.youtube.com/watch?v=kJItjpQoFgU&list=PLou4rSGgyTxa3Nqtb4JMR-i6oHLuiP8ao&index=2', className: 'normal' },
+    { title: 'SET ME FREE', display: 'SET ME FREE', img: 'set_me_free.jpg',
+      url: 'https://www.youtube.com/watch?v=rYWvOyGg0b8&list=PLou4rSGgyTxa3Nqtb4JMR-i6oHLuiP8ao&index=3', className: 'normal' },
+    { title: "I CAN'T STOP ME", display: "I CAN'T STOP ME", img: 'icsm.jpg',
+      url: 'https://www.youtube.com/watch?v=ESn0dkDh000&list=PLou4rSGgyTxa3Nqtb4JMR-i6oHLuiP8ao&index=4', className: 'normal' },
+    { title: 'I GOT YOU', display: 'I GOT YOU', img: 'i_got_you.jpg',
+      url: 'https://www.youtube.com/watch?v=ZLAPXBbc0gk&list=PLou4rSGgyTxa3Nqtb4JMR-i6oHLuiP8ao&index=5', className: 'normal' },
+    { title: 'RUN AWAY', display: 'RUN AWAY（TZUYU）', img: 'runaway.jpg',
+      url: 'https://www.youtube.com/watch?v=yPCn_7DMCw0&list=PLou4rSGgyTxa3Nqtb4JMR-i6oHLuiP8ao&index=23', className: 'tzuyu' },
+    { title: 'DIVE IN', display: 'DIVE IN（TZUYU）', img: 'dive_in.jpg',
+      url: 'https://www.youtube.com/watch?v=HDteEotcxaY&list=PLou4rSGgyTxa3Nqtb4JMR-i6oHLuiP8ao&index=12', className: 'tzuyu' },
+    { title: 'STONE COLD', display: 'STONE COLD（MINA）', img: 'stone_cold.jpg',
+      url: 'https://www.youtube.com/watch?v=OV0VpwnFhuY&list=PLou4rSGgyTxa3Nqtb4JMR-i6oHLuiP8ao&index=13', className: 'mina' },
+    { title: 'MEEEEEE', display: 'MEEEEEE（NAYEON）', img: 'meeeeee.jpg',
+      url: 'https://www.youtube.com/watch?v=DsaP3UqbIss&list=PLou4rSGgyTxa3Nqtb4JMR-i6oHLuiP8ao&index=14', className: 'nayeon' },
+    { title: 'FIX A DRINK', display: 'FIX A DRINK（JEONGYEON）', img: 'fix_a_drink.jpg',
+      url: 'https://www.youtube.com/watch?v=UBztpe1hh8c&list=PLou4rSGgyTxa3Nqtb4JMR-i6oHLuiP8ao&index=15', className: 'jeongyeon' },
+    { title: 'CHESS', display: 'CHESS（DAHYUN）', img: 'chess.jpg',
+      url: 'https://www.youtube.com/watch?v=kr1mThC2n1s&list=PLou4rSGgyTxa3Nqtb4JMR-i6oHLuiP8ao&index=16', className: 'dahyun' },
+    { title: 'SHOOT', display: 'SHOOT（CHAEYOUNG）', img: 'shoot.jpg',
+      url: 'https://www.youtube.com/watch?v=2lV1cTppl6c&list=PLou4rSGgyTxa3Nqtb4JMR-i6oHLuiP8ao&index=17', className: 'chaeyoung' },
+    { title: 'ATM', display: 'ATM（JIHYO）', img: 'atm.jpg',
+      url: 'https://www.youtube.com/watch?v=S_3pHAHnfDU&list=PLou4rSGgyTxa3Nqtb4JMR-i6oHLuiP8ao&index=18', className: 'jihyo' },
+    { title: 'DECAFFEINATED', display: 'DECAFFEINATED（SANA）', img: 'decaf.jpg',
+      url: 'https://www.youtube.com/watch?v=MPR4RbVACzk&list=PLou4rSGgyTxa3Nqtb4JMR-i6oHLuiP8ao&index=19', className: 'sana' },
+    { title: 'MOVE LIKE THAT', display: 'MOVE LIKE THAT（MOMO）', img: 'move_like_that.jpg',
+      url: 'https://www.youtube.com/watch?v=zmn8BCIdzSE&list=PLou4rSGgyTxa3Nqtb4JMR-i6oHLuiP8ao&index=20', className: 'momo' },
+    { title: 'FANCY', display: 'FANCY', img: 'fancy.jpg',
+      url: 'https://www.youtube.com/watch?v=--fw0TREtPA&list=PLou4rSGgyTxa3Nqtb4JMR-i6oHLuiP8ao&index=6', className: 'normal' },
+    { title: 'WHAT IS LOVE？', display: 'WHAT IS LOVE？', img: 'what_is_love.jpg',
+      url: 'https://www.youtube.com/watch?v=iCMJcXXug3s&list=PLou4rSGgyTxa3Nqtb4JMR-i6oHLuiP8ao&index=7', className: 'normal' },
+    { title: 'YES OR YES', display: 'YES OR YES', img: 'yes_or_yes.jpg',
+      url: 'https://www.youtube.com/watch?v=Udud0ZjVWCE&list=PLou4rSGgyTxa3Nqtb4JMR-i6oHLuiP8ao&index=8', className: 'normal' },
+    { title: 'DANCE THE NIGHT AWAY', display: 'DANCE THE NIGHT AWAY', img: 'dancethenightaway.jpg',
+      url: 'https://www.youtube.com/watch?v=ve7PuS91s14&list=PLou4rSGgyTxa3Nqtb4JMR-i6oHLuiP8ao&index=9', className: 'normal' },
+    { title: 'FEEL SPECIAL', display: 'FEEL SPECIAL', img: 'feel_special.jpg',
+      url: 'https://www.youtube.com/watch?v=IOmuE8keA7g&list=PLou4rSGgyTxa3Nqtb4JMR-i6oHLuiP8ao&index=10', className: 'normal' },
+    { title: 'ONE SPARK', display: 'ONE SPARK', img: 'one_spark.jpg',
+      url: 'https://www.youtube.com/watch?v=_3KdaVwKpXw&list=PLou4rSGgyTxa3Nqtb4JMR-i6oHLuiP8ao&index=11', className: 'normal' },
+    { title: 'TALK THAT TALK', display: 'TALK THAT TALK', img: 'talk_that_talk.jpg',
+      url: 'https://www.youtube.com/watch?v=KIsbsNjtltg&list=PLou4rSGgyTxa3Nqtb4JMR-i6oHLuiP8ao&index=22', className: 'normal' },
+    { title: 'ME+YOU', display: 'ME+YOU', img: 'me_plus_you.jpg',
+      url: 'https://www.youtube.com/watch?v=Wfa3b_sp1Tk&list=PLou4rSGgyTxa3Nqtb4JMR-i6oHLuiP8ao&index=21', className: 'normal' },
+];
 
-    const totalPages = songs.length - 1;
-    let currentPage = 0; // 0 = 首頁
+const totalPages = songs.length - 1;
+let currentPage = 0; // 0 = 首頁
 
-    const pageContent = document.getElementById('page-content');
-    const dirOverlay = document.getElementById('directory-overlay');
-    const dirList = document.getElementById('dir-list');
-    const bottomPrev = document.getElementById('bottom-prev');
-    const bottomNext = document.getElementById('bottom-next');
-    const bottomVideo = document.getElementById('bottom-video');
-    const arrowLeft = document.getElementById('arrow-left');
-    const arrowRight = document.getElementById('arrow-right');
+const pageContent = document.getElementById('page-content');
+const dirOverlay = document.getElementById('directory-overlay');
+const dirList = document.getElementById('dir-list');
+const bottomPrev = document.getElementById('bottom-prev');
+const bottomNext = document.getElementById('bottom-next');
+const bottomVideo = document.getElementById('bottom-video');
+const arrowLeft = document.getElementById('arrow-left');
+const arrowRight = document.getElementById('arrow-right');
+const bottomBar = document.querySelector('.bottom-bar');
+const mainArea  = document.getElementById('main-area');
 
-    function buildDirectory() {
-        dirList.innerHTML = '';
+function buildDirectory() {
+    dirList.innerHTML = '';
 
-        // 首頁
-        const liHome = document.createElement('li');
-        const btnHome = document.createElement('button');
-        btnHome.textContent = '首頁';
-        btnHome.dataset.page = '0';
-        btnHome.onclick = () => { currentPage = 0; closeDirectory(); render(); };
-        liHome.appendChild(btnHome);
-        dirList.appendChild(liHome);
+    // 首頁
+    const liHome = document.createElement('li');
+    const btnHome = document.createElement('button');
+    btnHome.textContent = '首頁';
+    btnHome.dataset.page = '0';
+    btnHome.onclick = () => { currentPage = 0; closeDirectory(); render(); };
+    liHome.appendChild(btnHome);
+    dirList.appendChild(liHome);
 
-        // 歌曲
-        for (let i = 1; i <= totalPages; i++) {
-            const li = document.createElement('li');
-            const btn = document.createElement('button');
-            btn.textContent = i + '. ' + songs[i].title;
-            btn.dataset.page = i;
-            btn.onclick = () => { currentPage = i; closeDirectory(); render(); };
-            li.appendChild(btn);
-            dirList.appendChild(li);
-        }
+    // 歌曲
+    for (let i = 1; i <= totalPages; i++) {
+        const li = document.createElement('li');
+        const btn = document.createElement('button');
+        btn.textContent = i + '. ' + songs[i].title;
+        btn.dataset.page = i;
+        btn.onclick = () => { currentPage = i; closeDirectory(); render(); };
+        li.appendChild(btn);
+        dirList.appendChild(li);
+    }
+}
+
+function updateDirActive() {
+    dirList.querySelectorAll('button').forEach(b => b.classList.remove('active'));
+    const selector = currentPage === 0 ? 'button[data-page="0"]' : `button[data-page="${currentPage}"]`;
+    const activeBtn = dirList.querySelector(selector);
+    if (activeBtn) activeBtn.classList.add('active');
+}
+
+function render() {
+    // 每次換頁先確保工具列是顯示的
+    bottomBar.classList.remove('hidden');
+
+    if (currentPage === 0) {
+        renderHome();
+        // 首頁：箭頭隱藏、影片不可按
+        arrowLeft.style.display = 'none';
+        arrowRight.style.display = 'none';
+        bottomPrev.disabled = true;
+        bottomNext.disabled = false;
+        bottomVideo.classList.add('disabled');
+        bottomVideo.removeAttribute('href');
+    } else {
+        renderSong(currentPage);
+        arrowLeft.style.display = 'flex';
+        arrowRight.style.display = 'flex';
+        bottomPrev.disabled = (currentPage === 0);
+        bottomNext.disabled = (currentPage === totalPages);
+        bottomVideo.classList.remove('disabled');
+        bottomVideo.href = songs[currentPage].url;
     }
 
-    function updateDirActive() {
-        dirList.querySelectorAll('button').forEach(b => b.classList.remove('active'));
-        const selector = currentPage === 0 ? 'button[data-page="0"]' : `button[data-page="${currentPage}"]`;
-        const activeBtn = dirList.querySelector(selector);
-        if (activeBtn) activeBtn.classList.add('active');
+    updateDirActive();
+}
+
+function renderHome() {
+    pageContent.innerHTML = `
+        <h1>TWICE 台灣演唱會 應援電子書</h1>
+        <div class="subtitle">選一首歌，就能看到對應的應援圖片與 YouTube 應援影片 🎀</div>
+        <div class="home-btn-row">
+            <a class="primary-link"
+               href="https://www.youtube.com/watch?v=cfMFmH2qmyc&list=PLou4rSGgyTxa3Nqtb4JMR-i6oHLuiP8ao"
+               target="_blank" rel="noopener noreferrer">
+                ▶ 直接前往 YouTube 應援影片（第一首）
+            </a>
+            <a class="primary-link"
+               href="https://music.youtube.com/playlist?list=PLkfR5QYlGSqKPCqaMxqiPi_vHSsUmpYwN&si=YVW92kOOICQjq3ZI"
+               target="_blank" rel="noopener noreferrer">
+                🎵 打開 YouTube Music 演唱會歌單
+            </a>
+        </div>
+        <h3 style="margin-top:18px; text-align:center;">歌曲選單</h3>
+        <div class="song-grid" id="home-song-grid"></div>
+    `;
+
+    const grid = document.getElementById('home-song-grid');
+    for (let i = 1; i <= totalPages; i++) {
+        const btn = document.createElement('button');
+        btn.textContent = songs[i].title;
+        btn.classList.add(songs[i].className || 'normal');
+        btn.onclick = () => { currentPage = i; render(); };
+        grid.appendChild(btn);
     }
+}
 
-    function render() {
-        if (currentPage === 0) {
-            renderHome();
-            // 首頁：箭頭隱藏、影片不可按
-            arrowLeft.style.display = 'none';
-            arrowRight.style.display = 'none';
-            bottomPrev.disabled = true;
-            bottomNext.disabled = false;
-            bottomVideo.classList.add('disabled');
-            bottomVideo.removeAttribute('href');
-        } else {
-            renderSong(currentPage);
-            arrowLeft.style.display = 'flex';
-            arrowRight.style.display = 'flex';
-            bottomPrev.disabled = (currentPage === 0);
-            bottomNext.disabled = (currentPage === totalPages);
-            bottomVideo.classList.remove('disabled');
-            bottomVideo.href = songs[currentPage].url;
-        }
+function renderSong(idx) {
+    const song = songs[idx];
+    pageContent.innerHTML = `
+        <div class="song-content">
+            <img id="song-image" src="${song.img}" alt="${song.display}">
+        </div>
+    `;
+}
 
-        updateDirActive();
-    }
-
-    function renderHome() {
-        pageContent.innerHTML = `
-            <h1>TWICE 台灣演唱會 應援電子書</h1>
-            <div class="subtitle">選一首歌，就能看到對應的應援圖片與 YouTube 應援影片 🎀</div>
-            <div class="home-btn-row">
-                <a class="primary-link"
-                   href="https://www.youtube.com/watch?v=cfMFmH2qmyc&list=PLou4rSGgyTxa3Nqtb4JMR-i6oHLuiP8ao"
-                   target="_blank" rel="noopener noreferrer">
-                    ▶ 直接前往 YouTube 應援影片（第一首）
-                </a>
-                <a class="primary-link"
-                   href="https://music.youtube.com/playlist?list=PLkfR5QYlGSqKPCqaMxqiPi_vHSsUmpYwN&si=YVW92kOOICQjq3ZI"
-                   target="_blank" rel="noopener noreferrer">
-                    🎵 打開 YouTube Music 演唱會歌單
-                </a>
-            </div>
-            <h3 style="margin-top:18px; text-align:center;">歌曲選單</h3>
-            <div class="song-grid" id="home-song-grid"></div>
-        `;
-
-        const grid = document.getElementById('home-song-grid');
-        for (let i = 1; i <= totalPages; i++) {
-            const btn = document.createElement('button');
-            btn.textContent = songs[i].title;
-            btn.classList.add(songs[i].className || 'normal');
-            btn.onclick = () => { currentPage = i; render(); };
-            grid.appendChild(btn);
-        }
-    }
-
-    function renderSong(idx) {
-        const song = songs[idx];
-        pageContent.innerHTML = `
-            <div class="song-content">
-                <img id="song-image" src="${song.img}" alt="${song.display}">
-            </div>
-        `;
-    }
-
-    // 翻頁控制
-    function goHome() {
-        currentPage = 0;
-        render();
-    }
-
-    function goTo(idx) {
-        if (idx < 0 || idx > totalPages) return;
-        currentPage = idx;
-        render();
-    }
-
-    function goPrev() {
-        if (currentPage > 0) {
-            currentPage -= 1;
-            render();
-        }
-    }
-
-    function goNext() {
-        if (currentPage < totalPages) {
-            currentPage += 1;
-            render();
-        }
-    }
-
-    // 底部目錄面板控制
-    function toggleDirectory() {
-        dirOverlay.classList.toggle('open');
-    }
-
-    function closeDirectory() {
-        dirOverlay.classList.remove('open');
-    }
-
-    function directoryBackgroundClick(e) {
-        if (e.target.id === 'directory-overlay') {
-            closeDirectory();
-        }
-    }
-
-    // 初始化
-    buildDirectory();
+// 翻頁控制
+function goHome() {
+    currentPage = 0;
     render();
+}
 
-    // 讓按鈕可以叫到的函式掛到 window
-    window.goHome = goHome;
-    window.goPrev = goPrev;
-    window.goNext = goNext;
-    window.goTo = goTo;
-    window.toggleDirectory = toggleDirectory;
-    window.directoryBackgroundClick = directoryBackgroundClick;
+function goTo(idx) {
+    if (idx < 0 || idx > totalPages) return;
+    currentPage = idx;
+    render();
+}
+
+function goPrev() {
+    if (currentPage > 0) {
+        currentPage -= 1;
+        render();
+    }
+}
+
+function goNext() {
+    if (currentPage < totalPages) {
+        currentPage += 1;
+        render();
+    }
+}
+
+// 底部目錄面板控制
+function toggleDirectory() {
+    dirOverlay.classList.toggle('open');
+}
+
+function closeDirectory() {
+    dirOverlay.classList.remove('open');
+}
+
+function directoryBackgroundClick(e) {
+    if (e.target.id === 'directory-overlay') {
+        closeDirectory();
+    }
+}
+
+// 🔥 點畫面顯示 / 隱藏底部工具列（只有歌曲頁）
+mainArea.addEventListener('click', function (e) {
+    // 首頁不要隱藏工具列
+    if (currentPage === 0) return;
+
+    // 點到底部工具列本身、或底部目錄，不要觸發
+    if (e.target.closest('.bottom-bar')) return;
+    if (e.target.closest('.dir-overlay')) return;
+
+    bottomBar.classList.toggle('hidden');
+});
+
+// 初始化
+buildDirectory();
+render();
+
+// 讓按鈕可以叫到的函式掛到 window（其實現在不太需要，但保留）
+window.goHome = goHome;
+window.goPrev = goPrev;
+window.goNext = goNext;
+window.goTo = goTo;
+window.toggleDirectory = toggleDirectory;
+window.directoryBackgroundClick = directoryBackgroundClick;
 </script>
 
 </body>
