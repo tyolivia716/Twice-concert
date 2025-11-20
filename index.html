@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<title>TWICE 應援電子書</title>
+
+<!-- 中文：Noto Sans TC（源泉圓體），英文：Times New Roman -->
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700&display=swap" rel="stylesheet">
+
+<style>
+    :root {
+        /* Pantone 812C approx hex */
+        --twice-main: #FF5FA2;
+        --bg-overlay: rgba(255,255,255,0.92);
+    }
+
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+        margin: 0;
+        font-family: 'Noto Sans TC', 'Times New Roman', serif;
+        background: url('your_twice_background.jpg') center/cover fixed no-repeat;
+        color: #222;
+    }
+
+    .app {
+        min-height: 100vh;
+        backdrop-filter: blur(4px);
+        background: rgba(0,0,0,0.35);
+        display: flex;
+    }
+
+    /* 側邊選單 */
+    #sidebar {
+        width: 220px;
+        background: rgba(0,0,0,0.85);
+        color: #fff;
+        padding: 16px 10px;
+        overflow-y: auto;
+    }
+
+    #sidebar h2 {
+        font-size: 18px;
+        margin: 0 0 12px;
+        text-align: center;
+        font-family: 'Noto Sans TC', 'Times New Roman', serif;
+    }
+
+    #sidebar ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    #sidebar li {
+        margin-bottom: 6px;
+    }
+
+    #sidebar button {
+        width: 100%;
+        border: none;
+        background: transparent;
+        color: #eee;
+        text-align: left;
+        padding: 6px 8px;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 14px;
+        font-family: 'Noto Sans TC', 'Times New Roman', serif;
+    }
+
+    #sidebar button:hover,
+    #sidebar button.active {
+        background: var(--twice-main);
+        color: #111;
+    }
+
+    /* 手機用的側邊開關 */
+    .menu-btn {
+        display: none;
+        position: fixed;
+        top: 10px;
+        left: 10px;
+        z-index: 1001;
+        background: rgba(0,0,0,0.75);
+        color: #fff;
+        border: none;
+        border-radius: 8px;
+        padding: 8px 10px;
+        font-size: 16px;
+        cursor: pointer;
+        font-family: 'Noto Sans TC', 'Times New Roman', serif;
+    }
+
+    /* 主內容區 */
+    .main {
+        flex: 1;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+    }
+
+    .page-card {
+        width: 100%;
+        max-width: 900px;
+        background: var(--bg-overlay);
+        border-radius: 16px;
+        padding: 20px 18px 28px;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.35);
+    }
+
+    h1 {
+        margin-top: 0;
+        text-align: center;
+        font-family: 'Noto Sans TC', 'Times New Roman', serif;
+    }
+
+    .subtitle {
+        text-align: center;
+        color: #666;
+        margin-bottom: 16px;
+        font-size: 14px;
+    }
+
+    /* 首頁按鈕區 */
+    .home-btn-row {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+        margin-bottom: 16px;
+    }
+
+    .home-btn-row a {
+        text-decoration: none;
+    }
+
+    .primary-link {
+        padding: 10px 16px;
+        border-radius: 10px;
+        border: 2px solid var(--twice-main);
+        background: white;
+        color: #111;
+        font-weight: 700;
+        font-size: 14px;
+        cursor: pointer;
+        display: inline-block;
+        min-width: 200px;
+        text-align: center;
+        font-family: 'Noto Sans TC', 'Times New Roman', serif;
+    }
+
+    .primary-link:hover {
+        background: var(--twice-main);
+        color: #111;
+    }
+
+    .song-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+        gap: 10px;
+        margin-top: 10px;
+    }
+
+    .song-grid button {
+        padding: 8px 10px;
+        border-radius: 10px;
+        border: none;
+        font-size: 14px;
+        font-weight: 700;
+        cursor: pointer;
+        color: #fff;
+        transition: transform 0.15s;
+        font-family: 'Noto Sans TC', 'Times New Roman', serif;
+    }
+
+    .song-grid button:hover {
+        transform: translateY(-2px);
+    }
+
+    /* 應援色 */
+    .tzuyu   { background: #0C2D83; }
+    .mina    { background: #7EE8C3; color:#034036; }
+    .nayeon  { background: #AEE3FF; color:#003655; }
+    .jeongyeon { background: #9ED88D; color:#143A0A; }
+    .dahyun  { background: #FFFFFF; color: var(--twice-main); border: 2px solid var(--twice-main); }
+    .chaeyoung { background: #FF4A4A; }
+    .jihyo   { background: #F7C63D; color:#5A3C00; }
+    .sana    { background: #A48DFF; }
+    .momo    { background: #FF8AB7; }
+    .normal  { background: var(--twice-main); }
+
+    /* 歌曲頁內容 */
+    .song-title {
+        font-size: 22px;
+        margin-bottom: 6px;
+        text-align: center;
+        font-family: 'Noto Sans TC', 'Times New Roman', serif;
+    }
+
+    .song-sub {
+        text-align: center;
+        font-size: 14px;
+        color: #777;
+        margin-bottom: 16px;
+    }
+
+    .song-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 12px;
+    }
+
+    #song-image {
+        width: 100%;
+        max-height: calc(100vh - 180px);
+        border-radius: 14px;
+        box-shadow: 0 6px 16px rgba(0,0,0,0.3);
+        transition: transform 0.2s;
+        object-fit: contain;
+    }
+
+    .song-right {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        min-width: 180px;
+        align-items: center;
+    }
+
+    .yt-btn {
+        padding: 10px 14px;
+        border-radius: 10px;
+        border: none;
+        background: #FF0000;
+        color: #fff;
+        font-weight: 700;
+        cursor: pointer;
+        text-decoration: none;
+        text-align: center;
+        font-size: 14px;
+        font-family: 'Noto Sans TC', 'Times New Roman', serif;
+        min-width: 180px;
+    }
+
+    /* 左右懸浮箭頭 */
+    .page-arrow {
+        position: fixed;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 900;
+        width: 40px;
+        height: 40px;
+        border-radius: 20px;
+        border: none;
+        background: rgba(0,0,0,0.65);
+        color: #fff;
+        font-size: 20px;
+        cursor: pointer;
+        display: none; /* 預設隱藏，歌曲頁才顯示 */
+        align-items: center;
+        justify-content: center;
+        font-family: 'Noto Sans TC', 'Times New Roman', serif;
+    }
+
+    .page-arrow.left { left: 8px; }
+    .page-arrow.right { right: 8px; }
+
+    /* 底部工具列（可滑出） */
+    .bottom-handle {
+        position: fixed;
+        bottom: 6px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: rgba(0,0,0,0.7);
+        color: #fff;
+        padding: 4px 12px;
+        border-radius: 999px;
+        font-size: 12px;
+        cursor: pointer;
+        z-index: 950;
+        font-family: 'Noto Sans TC', 'Times New Roman', serif;
+        display: none; /* 首頁不顯示 */
+    }
+
+    .bottom-tools {
+        position: fixed;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        transform: translateY(100%);
+        transition: transform 0.25s;
+        z-index: 940;
+        display: flex;
+        justify-content: center;
+        pointer-events: none;
+    }
+
+    .bottom-tools.open {
+        transform: translateY(0);
+    }
+
+    .bottom-inner {
+        background: rgba(0,0,0,0.85);
+        color: #fff;
+        width: 100%;
+        max-width: 900px;
+        border-radius: 16px 16px 0 0;
+        padding: 10px 12px 12px;
+        pointer-events: auto;
+    }
+
+    .toolbar-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .toolbar-row button,
+    .toolbar-row a,
+    .toolbar-row select {
+        font-family: 'Noto Sans TC', 'Times New Roman', serif;
+    }
+
+    .tool-btn {
+        padding: 6px 10px;
+        border-radius: 8px;
+        border: none;
+        background: var(--twice-main);
+        color: #111;
+        font-weight: 700;
+        cursor: pointer;
+        font-size: 13px;
+        min-width: 80px;
+    }
+
+    .tool-btn:disabled {
+        opacity: 0.5;
+        cursor: default;
+    }
+
+    #tool-video {
+        text-decoration: none;
+        display: inline-block;
+    }
+
+    #zoom-select {
+        padding: 5px 8px;
+        border-radius: 8px;
+        border: 1px solid #ccc;
+        font-size: 13px;
+    }
+
+    .tool-label {
+        font-size: 12px;
+    }
+
+    .page-info {
+        text-align: center;
+        margin-top: 6px;
+        font-size: 12px;
+        color: #eee;
+    }
+
+    /* RWD：手機 */
+    @media (max-width: 768px) {
+        .app {
+            flex-direction: column;
+        }
+
+        #sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100vh;
+            transform: translateX(-100%);
+            transition: transform 0.25s;
+            z-index: 1000;
+        }
+
+        #sidebar.open {
+            transform: translateX(0);
+        }
+
+        .menu-btn {
+            display: block;
+        }
+
+        .main {
+            padding: 60px 12px 20px;
+        }
+
+        .page-card {
+            padding: 16px 12px 22px;
+        }
+
+        #song-image {
+            max-height: calc(100vh - 150px);
+        }
+
+        .bottom-inner {
+            border-radius: 14px 14px 0 0;
+        }
+    }
+</style>
+</head>
+<body>
+
+<button class="menu-btn" onclick="toggleSidebar()">☰ 目錄</button>
+
+<!-- 左右翻頁懸浮箭頭 -->
+<button class="page-arrow left" id="arrow-left" onclick="goPrev()">‹</button>
+<button class="page-arrow right" id="arrow-right" onclick="goNext()">›</button>
+
+<div class="app">
+    <!-- 側邊目錄 -->
+    <aside id="sidebar">
+        <h2>TWICE 目錄</h2>
+        <ul id="toc">
+            <!-- JS 會塞進來 -->
+        </ul>
+    </aside>
+
+    <!-- 主頁面 -->
+    <main class="main" id="main-area">
+        <div class="page-card" id="page-content">
+            <!-- JS 會根據 currentPage 填內容 -->
+        </div>
+    </main>
+</div>
+
+<!-- 底部工具列 -->
+<div class="bottom-tools" id="bottom-tools">
+    <div class="bottom-inner">
+        <div class="toolbar-row">
+            <button class="tool-btn" id="tool-prev" onclick="goPrev()">上一頁</button>
+            <button class="tool-btn" id="tool-next" onclick="goNext()">下一頁</button>
+
+            <span class="tool-label">縮放：</span>
+            <select id="zoom-select" onchange="changeZoom()">
+                <option value="0.75">75%</option>
+                <option value="1" selected>100%</option>
+                <option value="1.25">125%</option>
+                <option value="1.5">150%</option>
+            </select>
+
+            <a class="tool-btn" id="tool-video" href="#" target="_blank" rel="noopener noreferrer">
+                看影片
+            </a>
+        </div>
+        <div class="page-info" id="page-info"></div>
+    </div>
+</div>
+
+<div class="bottom-handle" id="bottom-handle" onclick="toggleTools()">▲ 工具列</div>
+
+<script>
+    // 歌曲資料：index 1..23，0 是首頁
+    const songs = [
+        null,
+        { title: 'THIS IS FOR', display: 'THIS IS FOR', img: 'this_is_for.jpg',
+          url: 'https://www.youtube.com/watch?v=cfMFmH2qmyc&list=PLou4rSGgyTxa3Nqtb4JMR-i6oHLuiP8ao', className: 'normal' },
+        { title: 'STRATEGY', display: 'STRATEGY', img: 'strategy.jpg',
+          url: 'https://www.youtube.com/watch?v=kJItjpQoFgU&list=PLou4rSGgyTxa3Nqtb4JMR-i6oHLuiP8ao&index=2', className: 'normal' },
+        { title: 'SET ME FREE', display: 'SET ME FREE', img: 'set_me_free.jpg',
+          url: 'https://www.youtube.com/watch?v=rYWvOyGg0b8&list=PLou4rSGgyTxa3Nqtb4JMR-i6oHLuiP8ao&index=3', className: 'normal' },
+        { title: "I CAN'T STOP ME", display: "I CAN'T STOP ME", img: 'i_cant_stop_me.jpg',
+          url: 'https://www.youtube.com/watch?v=ESn0dkDh000&list=PLou4rSGgyTxa3Nqtb4JMR-i6oHLuiP8ao&index=4', className: 'normal' },
+        { title: 'I GOT YOU', display: 'I GOT YOU', img: 'i_got_you.jpg',
+          url: 'https://www.youtube.com/watch?v=ZLAPXBbc0gk&list=PLou4rSGgyTxa3Nqtb4JMR-i6oHLuiP8ao&index=5', className: 'normal' },
+        { title: 'RUN AWAY', display: 'RUN AWAY（TZUYU）', img: 'run_away.jpg',
+          url: 'https://www.youtube.com/watch?v=yPCn_7DMCw0&list=PLou4rSGgyTxa3Nqtb4JMR-i6oHLuiP8ao&index=23', className: 'tzuyu' },
+        { title: 'DIVE IN', display: 'DIVE IN（TZUYU）', img: 'dive_in.jpg',
+          url: 'https://www.youtube.com/watch?v=HDteEotcxaY&list=PLou4rSGgyTxa3Nqtb4JMR-i6oHLuiP8ao&index=12', className: 'tzuyu' },
+        { title: 'STONE COLD', display: 'STONE COLD（MINA）', img: 'stone_cold.jpg',
+          url: 'https://www.youtube.com/watch?v=OV0VpwnFhuY&list=PLou4rSGgyTxa3Nqtb4JMR-i6oHLuiP8ao&index=13', className: 'mina' },
+        { title: 'MEEEEEE', display: 'MEEEEEE（NAYEON）', img: 'meeeeee.jpg',
+          url: 'https://www.youtube.com/watch?v=DsaP3UqbIss&list=PLou4rSGgyTxa3Nqtb4JMR-i6oHLuiP8ao&index=14', className: 'nayeon' },
+        { title: 'FIX A DRINK', display: 'FIX A DRINK（JEONGYEON）', img: 'fix_a_drink.jpg',
+          url: 'https://www.youtube.com/watch?v=UBztpe1hh8c&list=PLou4rSGgyTxa3Nqtb4JMR-i6oHLuiP8ao&index=15', className: 'jeongyeon' },
+        { title: 'CHESS', display: 'CHESS（DAHYUN）', img: 'chess.jpg',
+          url: 'https://www.youtube.com/watch?v=kr1mThC2n1s&list=PLou4rSGgyTxa3Nqtb4JMR-i6oHLuiP8ao&index=16', className: 'dahyun' },
+        { title: '能 SHOOT', display: '能 SHOOT（CHAEYOUNG）', img: 'neng_shoot.jpg',
+          url: 'https://www.youtube.com/watch?v=2lV1cTppl6c&list=PLou4rSGgyTxa3Nqtb4JMR-i6oHLuiP8ao&index=17', className: 'chaeyoung' },
+        { title: 'ATM', display: 'ATM（JIHYO）', img: 'atm.jpg',
+          url: 'https://www.youtube.com/watch?v=S_3pHAHnfDU&list=PLou4rSGgyTxa3Nqtb4JMR-i6oHLuiP8ao&index=18', className: 'jihyo' },
+        { title: 'DECAFFEINATED', display: 'DECAFFEINATED（SANA）', img: 'decaffeinated.jpg',
+          url: 'https://www.youtube.com/watch?v=MPR4RbVACzk&list=PLou4rSGgyTxa3Nqtb4JMR-i6oHLuiP8ao&index=19', className: 'sana' },
+        { title: 'MOVE LIKE THAT', display: 'MOVE LIKE THAT（MOMO）', img: 'move_like_that.jpg',
+          url: 'https://www.youtube.com/watch?v=zmn8BCIdzSE&list=PLou4rSGgyTxa3Nqtb4JMR-i6oHLuiP8ao&index=20', className: 'momo' },
+        { title: 'FANCY', display: 'FANCY', img: 'fancy.jpg',
+          url: 'https://www.youtube.com/watch?v=--fw0TREtPA&list=PLou4rSGgyTxa3Nqtb4JMR-i6oHLuiP8ao&index=6', className: 'normal' },
+        { title: 'WHAT IS LOVE？', display: 'WHAT IS LOVE？', img: 'what_is_love.jpg',
+          url: 'https://www.youtube.com/watch?v=iCMJcXXug3s&list=PLou4rSGgyTxa3Nqtb4JMR-i6oHLuiP8ao&index=7', className: 'normal' },
+        { title: 'YES OR YES', display: 'YES OR YES', img: 'yes_or_yes.jpg',
+          url: 'https://www.youtube.com/watch?v=Udud0ZjVWCE&list=PLou4rSGgyTxa3Nqtb4JMR-i6oHLuiP8ao&index=8', className: 'normal' },
+        { title: 'DANCE THE NIGHT AWAY', display: 'DANCE THE NIGHT AWAY', img: 'dance_the_night_away.jpg',
+          url: 'https://www.youtube.com/watch?v=ve7PuS91s14&list=PLou4rSGgyTxa3Nqtb4JMR-i6oHLuiP8ao&index=9', className: 'normal' },
+        { title: 'FEEL SPECIAL', display: 'FEEL SPECIAL', img: 'feel_special.jpg',
+          url: 'https://www.youtube.com/watch?v=IOmuE8keA7g&list=PLou4rSGgyTxa3Nqtb4JMR-i6oHLuiP8ao&index=10', className: 'normal' },
+        { title: 'ONE SPARK', display: 'ONE SPARK', img: 'one_spark.jpg',
+          url: 'https://www.youtube.com/watch?v=_3KdaVwKpXw&list=PLou4rSGgyTxa3Nqtb4JMR-i6oHLuiP8ao&index=11', className: 'normal' },
+        { title: 'TALK THAT TALK', display: 'TALK THAT TALK', img: 'talk_that_talk.jpg',
+          url: 'https://www.youtube.com/watch?v=KIsbsNjtltg&list=PLou4rSGgyTxa3Nqtb4JMR-i6oHLuiP8ao&index=22', className: 'normal' },
+        { title: 'ME+YOU', display: 'ME+YOU', img: 'me_plus_you.jpg',
+          url: 'https://www.youtube.com/watch?v=Wfa3b_sp1Tk&list=PLou4rSGgyTxa3Nqtb4JMR-i6oHLuiP8ao&index=21', className: 'normal' },
+    ];
+
+    const totalPages = songs.length - 1;
+    let currentPage = 0; // 0 = 首頁
+    let zoom = 1.0;
+    let currentSongUrl = '';
+
+    const pageContent = document.getElementById('page-content');
+    const pageInfo = document.getElementById('page-info');
+    const toc = document.getElementById('toc');
+    const bottomTools = document.getElementById('bottom-tools');
+    const bottomHandle = document.getElementById('bottom-handle');
+    const arrowLeft = document.getElementById('arrow-left');
+    const arrowRight = document.getElementById('arrow-right');
+    const toolVideo = document.getElementById('tool-video');
+    const toolPrev = document.getElementById('tool-prev');
+    const toolNext = document.getElementById('tool-next');
+    const zoomSelect = document.getElementById('zoom-select');
+
+    // 建立側邊目錄
+    function buildToc() {
+        let liHome = document.createElement('li');
+        let btnHome = document.createElement('button');
+        btnHome.textContent = '首頁';
+        btnHome.onclick = () => { goHome(); closeSidebarOnMobile(); };
+        liHome.appendChild(btnHome);
+        toc.appendChild(liHome);
+
+        for (let i = 1; i <= totalPages; i++) {
+            const li = document.createElement('li');
+            const btn = document.createElement('button');
+            btn.textContent = i + '. ' + songs[i].title;
+            btn.onclick = () => { goTo(i); closeSidebarOnMobile(); };
+            btn.dataset.page = i;
+            li.appendChild(btn);
+            toc.appendChild(li);
+        }
+    }
+
+    function render() {
+        document.querySelectorAll('#toc button').forEach(btn => btn.classList.remove('active'));
+
+        if (currentPage === 0) {
+            renderHome();
+            pageInfo.textContent = '首頁';
+            const firstBtn = document.querySelector('#toc button');
+            if (firstBtn) firstBtn.classList.add('active');
+
+            // 首頁：隱藏工具列與箭頭
+            bottomTools.classList.remove('open');
+            bottomTools.style.display = 'none';
+            bottomHandle.style.display = 'none';
+            arrowLeft.style.display = 'none';
+            arrowRight.style.display = 'none';
+        } else {
+            renderSong(currentPage);
+            pageInfo.textContent = `第 ${currentPage} / ${totalPages} 頁`;
+            const btn = document.querySelector(`#toc button[data-page="${currentPage}"]`);
+            if (btn) btn.classList.add('active');
+
+            // 歌曲頁：顯示工具列 handle & 箭頭
+            bottomTools.style.display = 'flex';
+            bottomHandle.style.display = 'block';
+            arrowLeft.style.display = 'flex';
+            arrowRight.style.display = 'flex';
+
+            // 工具列的上一頁 / 下一頁 disable 狀態
+            toolPrev.disabled = (currentPage === 0);
+            toolNext.disabled = (currentPage === totalPages);
+        }
+    }
+
+    function renderHome() {
+        pageContent.innerHTML = `
+            <h1>TWICE 台灣演唱會 應援電子書</h1>
+            <div class="subtitle">選一首歌，就能看到對應的應援圖片與 YouTube 應援影片 🎀</div>
+            <div class="home-btn-row">
+                <a class="primary-link"
+                   href="https://www.youtube.com/watch?v=cfMFmH2qmyc&list=PLou4rSGgyTxa3Nqtb4JMR-i6oHLuiP8ao"
+                   target="_blank" rel="noopener noreferrer">
+                    ▶ 直接前往 YouTube 應援影片（第一首）
+                </a>
+                <a class="primary-link"
+                   href="https://music.youtube.com/playlist?list=PLkfR5QYlGSqKPCqaMxqiPi_vHSsUmpYwN&si=YVW92kOOICQjq3ZI"
+                   target="_blank" rel="noopener noreferrer">
+                    🎵 打開 YouTube Music 演唱會歌單
+                </a>
+            </div>
+            <h3 style="margin-top:18px; text-align:center;">歌曲選單</h3>
+            <div class="song-grid" id="home-song-grid"></div>
+        `;
+
+        const grid = document.getElementById('home-song-grid');
+        for (let i = 1; i <= totalPages; i++) {
+            const btn = document.createElement('button');
+            btn.textContent = songs[i].title;
+            btn.classList.add(songs[i].className || 'normal');
+            btn.onclick = () => goTo(i);
+            grid.appendChild(btn);
+        }
+    }
+
+    function renderSong(idx) {
+        const song = songs[idx];
+        zoom = 1.0;
+        zoomSelect.value = '1';
+        currentSongUrl = song.url;
+
+        pageContent.innerHTML = `
+            <div class="song-title">${song.display}</div>
+            <div class="song-sub">TWICE 台灣演唱會 · 應援筆記</div>
+            <div class="song-content">
+                <img id="song-image" src="${song.img}" alt="${song.display}">
+                <div class="song-right">
+                    <a class="yt-btn" href="${song.url}" target="_blank" rel="noopener noreferrer">
+                        ▶ 前往 YouTube 應援影片
+                    </a>
+                </div>
+            </div>
+        `;
+
+        toolVideo.href = song.url;
+    }
+
+    // 翻頁控制
+    function goHome() {
+        currentPage = 0;
+        render();
+    }
+
+    function goTo(idx) {
+        if (idx < 0 || idx > totalPages) return;
+        currentPage = idx;
+        render();
+    }
+
+    function goPrev() {
+        if (currentPage > 0) {
+            currentPage -= 1;
+            render();
+        }
+    }
+
+    function goNext() {
+        if (currentPage < totalPages) {
+            currentPage += 1;
+            render();
+        }
+    }
+
+    // 縮放控制（用下拉選單）
+    function applyZoom() {
+        const img = document.getElementById('song-image');
+        if (img) img.style.transform = `scale(${zoom})`;
+    }
+
+    function changeZoom() {
+        const val = parseFloat(zoomSelect.value || '1');
+        zoom = val;
+        applyZoom();
+    }
+
+    // 手機側邊欄控制
+    function toggleSidebar() {
+        const sb = document.getElementById('sidebar');
+        sb.classList.toggle('open');
+    }
+
+    function closeSidebarOnMobile() {
+        if (window.innerWidth <= 768) {
+            document.getElementById('sidebar').classList.remove('open');
+        }
+    }
+
+    // 工具列開關
+    function toggleTools() {
+        bottomTools.classList.toggle('open');
+    }
+
+    function closeTools() {
+        bottomTools.classList.remove('open');
+    }
+
+    // 點擊頁面其他地方關閉工具列
+    document.addEventListener('click', function(e) {
+        if (
+            e.target.closest('#bottom-tools') ||
+            e.target.closest('#bottom-handle') ||
+            e.target.closest('.menu-btn') ||
+            e.target.closest('#sidebar')
+        ) {
+            return;
+        }
+        closeTools();
+    });
+
+    // 初始化
+    buildToc();
+    render();
+
+    // 讓按鈕可以叫到的函式掛到 window
+    window.goHome = goHome;
+    window.goPrev = goPrev;
+    window.goNext = goNext;
+    window.changeZoom = changeZoom;
+    window.toggleSidebar = toggleSidebar;
+    window.toggleTools = toggleTools;
+</script>
+
+</body>
+</html>
