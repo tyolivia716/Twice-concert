@@ -148,23 +148,33 @@
         color: #111;
     }
 
-   .song-grid {
+/* 🔥 手機首頁歌曲按鈕：變成 3 欄、大字、大按鈕 */
+.song-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);   /* 手機：2 欄 */
-    gap: 10px;
+    grid-template-columns: repeat(3, 1fr); /* 手機 3 欄 */
+    gap: 12px;                 /* 按鈕間距更大 */
     margin-top: 10px;
+    padding: 0 10px;           /* 讓左右不會貼邊 */
 }
 
-/* 平板以上才 4 欄 */
-@media (min-width: 500px) {
+.song-grid button {
+    padding: 14px 0;           /* 高度變大 */
+    font-size: 16px;           /* 字更大 */
+    font-weight: 700;
+    border-radius: 12px;
+}
+
+/* 平板以上切到 4 欄 */
+@media (min-width: 600px) {
     .song-grid {
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(4, 1fr);
     }
 }
 
-@media (min-width: 768px) {
+/* 電腦再到 5 欄 */
+@media (min-width: 900px) {
     .song-grid {
-        grid-template-columns: repeat(4, 1fr);
+        grid-template-columns: repeat(5, 1fr);
     }
 }
     .song-grid button {
@@ -349,27 +359,34 @@
     background: var(--twice-main);
     color: #111;
 }
-
-
-    /* RWD：手機 */
-    @media (max-width: 768px) {
-        .app {
-            flex-direction: column;
-        }
-
-        .main {
-            padding: 0;
-        }
-
-        .page-card {
-            max-width: 100%;
-            width: 100%;
-            padding: 0;
-            background: transparent;
-            box-shadow: none;
-            border-radius: 0;
-        }
+/* RWD：手機 */
+@media (max-width: 768px) {
+    .app {
+        flex-direction: column;
     }
+
+    .main {
+        padding: 0;
+    }
+
+    .page-card {
+        max-width: 100%;
+        width: 100%;
+        padding: 0;
+        background: transparent;
+        box-shadow: none;
+        border-radius: 0;
+    }
+}
+
+/* 🔥 底部工具列 TWICE LOGO（你要放在這裡） */
+.bottom-logo {
+    height: 32px;      /* LOGO 大小 */
+    width: auto;
+    margin: 0 10px;
+    display: block;
+}
+
 </style>
 </head>
 <body>
@@ -396,8 +413,14 @@
 <!-- 底部固定導覽列 -->
 <div class="bottom-bar">
     <button id="bottom-prev" onclick="goPrev()">上一頁</button>
+
     <button id="bottom-dir" onclick="toggleDirectory()">目錄</button>
+
+    <!-- 🔥 插入 TWICE LOGO（中間） -->
+    <img src="twice_logo.png" class="bottom-logo" alt="TWICE Logo">
+
     <a id="bottom-video" href="#" target="_blank" rel="noopener noreferrer" class="disabled">影片</a>
+
     <button id="bottom-next" onclick="goNext()">下一頁</button>
 </div>
 
