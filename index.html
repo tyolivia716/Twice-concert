@@ -79,7 +79,7 @@
 
     /* 手機用的側邊開關 */
     .menu-btn {
-        display: none;
+        display: block;
         position: fixed;
         top: 10px;
         left: 10px;
@@ -445,24 +445,25 @@
 </div>
 
 <!-- 底部工具列 -->
-<div class="bottom-tools" id="bottom-tools">
-    <div class="bottom-inner">
-        <div class="toolbar-row">
-            <button class="tool-btn" id="tool-prev" onclick="goPrev()">上一頁</button>
-            <button class="tool-btn" id="tool-next" onclick="goNext()">下一頁</button>
+<div class="toolbar-row">
+    <button class="tool-btn" id="tool-prev" onclick="goPrev()">上一頁</button>
+    <button class="tool-btn" id="tool-next" onclick="goNext()">下一頁</button>
 
-            <span class="tool-label">縮放：</span>
-            <select id="zoom-select" onchange="changeZoom()">
-                <option value="0.75">75%</option>
-                <option value="1" selected>100%</option>
-                <option value="1.25">125%</option>
-                <option value="1.5">150%</option>
-            </select>
+    <!-- 🔹 新增：打開/收合左邊目錄 -->
+    <button class="tool-btn" onclick="toggleSidebar()">目錄</button>
 
-            <a class="tool-btn" id="tool-video" href="#" target="_blank" rel="noopener noreferrer">
-                看影片
-            </a>
-        </div>
+    <span class="tool-label">縮放：</span>
+    <select id="zoom-select" onchange="changeZoom()">
+        <option value="0.75">75%</option>
+        <option value="1" selected>100%</option>
+        <option value="1.25">125%</option>
+        <option value="1.5">150%</option>
+    </select>
+
+    <a class="tool-btn" id="tool-video" href="#" target="_blank" rel="noopener noreferrer">
+        看影片
+    </a>
+</div>
         <div class="page-info" id="page-info"></div>
     </div>
 </div>
@@ -581,7 +582,7 @@
 
             // 歌曲頁：顯示工具列 handle & 箭頭
             bottomTools.style.display = 'flex';
-            bottomHandle.style.display = 'block';
+            bottomHandle.style.display = 'none';
             arrowLeft.style.display = 'flex';
             arrowRight.style.display = 'flex';
 
@@ -701,19 +702,25 @@
     function closeTools() {
         bottomTools.classList.remove('open');
     }
+// 點主畫面切換工具列（歌曲頁才有作用）
+const mainArea = document.getElementById('main-area');
 
-    // 點擊頁面其他地方關閉工具列
-    document.addEventListener('click', function(e) {
-        if (
-            e.target.closest('#bottom-tools') ||
-            e.target.closest('#bottom-handle') ||
-            e.target.closest('.menu-btn') ||
-            e.target.closest('#sidebar')
-        ) {
-            return;
-        }
-        closeTools();
-    });
+mainArea.addEventListener('click', function (e) {
+    // 首頁不顯示工具列
+    if (currentPage === 0) return;
+
+    // 點到底部工具列本身，不要 toggle
+    if (e.target.closest('#bottom-tools')) return;
+
+    // 點左右箭頭，不要 toggle
+    if (e.target.closest('.page-arrow')) return;
+
+    // 點左上角目錄鈕，不要 trigger toggle
+    if (e.target.closest('.menu-btn')) return;
+
+    // 其餘點一下就切換工具列出現/收起
+    toggleTools();
+});
 
     // 初始化
     buildToc();
