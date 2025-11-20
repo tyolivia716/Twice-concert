@@ -360,24 +360,56 @@
     color: #111;
 }
 /* RWD：手機 */
+/* RWD：手機 */
 @media (max-width: 768px) {
     .app {
         flex-direction: column;
     }
 
+    /* 主內容左右幾乎貼滿螢幕，預留一點邊距就好 */
     .main {
-        padding: 0;
+        padding: 12px 8px 80px;   /* 下方留空給底部工具列 */
+        align-items: stretch;     /* 讓白色卡片撐滿整個寬度 */
     }
 
+    /* 白色卡片放大到幾乎全寬 */
     .page-card {
-        max-width: 100%;
+        max-width: none;          /* 不再限制 900px */
         width: 100%;
-        padding: 0;
-        background: transparent;
-        box-shadow: none;
-        border-radius: 0;
+        padding: 16px 10px 20px;  /* 手機內距縮小一點看起來更滿 */
+        background: #ffffffee;
+        box-shadow: 0 6px 16px rgba(0,0,0,0.25);
+        border-radius: 18px;
+    }
+
+    /* 首頁上面兩顆大按鈕：改成一列一顆，撐滿寬度 */
+    .home-btn-row {
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .home-btn-row .primary-link {
+        width: 100%;
+        box-sizing: border-box;
+        font-size: 15px;
+        padding: 12px 10px;
+    }
+
+    /* 歌曲按鈕：在手機幾乎擺滿整個卡片寬度 */
+    .song-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);  /* 每行 3 首，大小剛好 */
+        gap: 10px;
+        margin-top: 12px;
+    }
+
+    .song-grid button {
+        padding: 12px 4px;       /* 按鈕變高 */
+        font-size: 15px;         /* 字放大 */
+        border-radius: 10px;
     }
 }
+
 
 /* 🔥 底部工具列 TWICE LOGO（你要放在這裡） */
 .bottom-logo {
