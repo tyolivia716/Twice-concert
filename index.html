@@ -148,13 +148,25 @@
         color: #111;
     }
 
-    .song-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
-        gap: 10px;
-        margin-top: 10px;
-    }
+   .song-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);   /* 手機：2 欄 */
+    gap: 10px;
+    margin-top: 10px;
+}
 
+/* 平板以上才 4 欄 */
+@media (min-width: 500px) {
+    .song-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (min-width: 768px) {
+    .song-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
     .song-grid button {
         padding: 8px 10px;
         border-radius: 10px;
